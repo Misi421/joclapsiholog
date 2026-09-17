@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joc la Psiholog by Andreea Abe Adebowale</title>
+<meta name="description" content="Andreea Abe Adebowale — psiholog clinician și psihoterapeut integrativ-relațional. Practică clinică pentru copii, adolescenți și familii, și formare pentru specialiști.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101a0c;
+    --ink-soft:#4c5a43;
+    --green:#4F873E;
+    --forest:color-mix(in srgb, var(--green) 95%, black);
+    --forest-2:color-mix(in srgb, var(--green) 70%, black);
+    --green-2:color-mix(in srgb, var(--green) 80%, black);
+    --green-3:color-mix(in srgb, var(--green) 100%, white);
+    --pale:color-mix(in srgb, var(--green) 7%, white);
+    --cream:#faf9f4;
+    --paper:#ffffff;
+    --line:rgba(16,26,12,.15);
+    --line-light:rgba(255,255,255,.18);
+    --radius:4px;
+    --maxw:1320px;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',system-ui,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  body.nav-open{overflow:hidden;}
+  body::after{
+    content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:120px;opacity:.03;mix-blend-mode:overlay;
+  }
+  @media(max-width:480px){ body::after{display:none;} }
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;font-weight:500;letter-spacing:.1px;color:var(--ink);}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+  ::selection{background:var(--green);color:#fff;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important;}
+  }
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.12s;}
+  .reveal-delay-2{transition-delay:.24s;}
+  .reveal-delay-3{transition-delay:.36s;}
+
+  /* PHOTO TREATMENT — real, natural color; only a soft contrast lift for consistency */
+  .ph{position:relative;overflow:hidden;background:var(--pale);}
+  .ph img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.04) saturate(1.05);}
+  .ph .shade-grad{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg,rgba(6,10,4,.02) 22%,rgba(6,10,4,.72) 100%),
+      linear-gradient(100deg,rgba(4,8,3,.75) 0%,rgba(4,8,3,.4) 32%,rgba(4,8,3,.05) 58%,transparent 74%);
+  }
+  .ph.pan{background-size:cover;background-repeat:no-repeat;background-position:center 22%;background-attachment:fixed;}
+
+  .text-link{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.94rem;color:var(--green-2);padding-bottom:4px;border-bottom:1.5px solid var(--green-2);transition:gap .3s var(--ease),color .3s,border-color .3s;}
+  .text-link:hover{gap:15px;color:var(--green);border-color:var(--green);}
+  .text-link svg{transition:transform .3s var(--ease);flex:none;}
+  .text-link:hover svg{transform:translateX(3px);}
+  .text-link.light{color:#e7efdf;border-color:rgba(231,239,223,.5);}
+  .text-link.light:hover{color:#fff;border-color:#fff;}
+  .text-link.big{font-size:1.05rem;}
+
+  .eyebrow{position:relative;display:inline-block;text-transform:uppercase;letter-spacing:3px;font-size:.72rem;font-weight:700;color:var(--green-2);padding-bottom:16px;margin-bottom:6px;}
+  .eyebrow::after{content:'';position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--green);transition:width .9s var(--ease) .15s;}
+  .eyebrow.in::after{width:52px;}
+  .eyebrow.light{color:#d3e3c8;}
+  .eyebrow.light::after{background:var(--green-3);}
+
+  /* HEADER */
+  .site-header{position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:0 0 0 0 rgba(16,26,12,0);transition:border-color .5s var(--ease),box-shadow .5s var(--ease);}
+  .site-header::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--cream);transition:background .5s var(--ease),backdrop-filter .5s var(--ease);}
+  .site-header.scrolled{border-bottom-color:rgba(16,26,12,.09);box-shadow:0 10px 30px -22px rgba(16,26,12,.35);}
+  .site-header.scrolled::before{background:rgba(250,249,244,.78);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);}
+  .header-inner{display:flex;align-items:center;gap:32px;max-width:var(--maxw);margin:0 auto;padding:16px 40px;}
+  .brand{display:flex;align-items:center;gap:10px;flex:none;}
+  .brand-icon{width:32px;height:32px;flex:none;}
+  .brand-name{font-family:'Fraunces',Georgia,serif;font-size:1rem;}
+  .index-nav{display:flex;gap:22px;align-items:center;font-size:.86rem;font-weight:600;flex:1;}
+  .index-nav a{position:relative;color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap;}
+  .index-nav a:hover{opacity:1;color:var(--green-2);}
+  .contact-box{flex:none;border:1.5px solid var(--ink);padding:9px 20px;font-weight:700;font-size:.86rem;border-radius:var(--radius);transition:background .3s,color .3s,border-color .3s;}
+  .contact-box:hover{background:var(--ink);color:#fff;}
+  .navtoggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;margin-left:auto;flex:none;position:relative;z-index:201;}
+  .navtoggle span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s,opacity .3s;}
+  .navtoggle.open span{background:#fff;}
+  .navtoggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .navtoggle.open span:nth-child(2){opacity:0;}
+  .navtoggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .contact-box-mobile{display:none;}
+
+  @media(max-width:900px){
+    .index-nav{position:fixed;inset:0;z-index:200;background:var(--pale);flex-direction:column;justify-content:flex-start;align-items:flex-start;padding:90px 34px 40px;gap:2px;transform:translateY(-100%);opacity:0;transition:transform .5s var(--ease),opacity .4s;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    }
+    .index-nav.open{transform:translateY(0);opacity:1;}
+    .index-nav a{font-size: 1.5rem;padding: 13px 0;width: 100%;opacity: 1;font-family: 'Fraunces', Georgia, serif;padding-left: 25px;}
+    .index-nav a.current{opacity: 1;color: var(--pale);background-color: var(--green);border-radius: 20px;
+    }   
+    .contact-box{display:none;}
+    .contact-box-mobile{display:inline-flex;margin-top:26px;color:#fff;padding:11px 24px;font-weight:700;border-radius:var(--radius);font-size:.9rem;}
+    .navtoggle{display:flex;}
+    .navtoggle.open span{background:#000;}
+  }
+
+  section{position:relative;}
+  .section-head{margin-bottom:52px;border-bottom:1px solid var(--line);padding-bottom:26px;}
+  .section-head h2{font-size:clamp(1.7rem,3.6vw,2.5rem);}
+  .section-lead{color:var(--ink-soft);max-width:680px;font-size:1.02rem;margin-top:-30px;margin-bottom:48px;}
+  .section-lead.light{color:#d3e3c8;}
+
+  /* HERO */
+  .hero{height:100vh;height:100dvh;min-height:600px;position:relative;overflow:hidden;}
+  .hero-media{position:absolute;inset:0;}
+  .hero-media img{will-change:transform;}
+  .hero-content{position:absolute;left:0;right:0;bottom:0;padding-bottom:9vh;z-index:2;}
+  .hero-content h1{color:#fdfcf8;font-size:clamp(2.3rem,6vw,4.4rem);line-height:1.06;margin-bottom:24px;max-width:900px;text-shadow:0 2px 18px rgba(0,0,0,.4);}
+  .hero-content h1 span{color:var(--green-3);}
+  .hero-content .lead{color:#e3ecda;font-size:1.08rem;max-width:480px;margin-bottom:36px;text-shadow:0 1px 10px rgba(0,0,0,.4);}
+  .scrolldown{display:inline-flex;align-items:center;gap:12px;color:#fdfcf8;font-size:.86rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;}
+  .scrolldown .arrow{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;animation:bob 2.2s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+  /* MARQUEE */
+  .marquee{background:var(--forest);color:#eef3e7;overflow:hidden;padding:20px 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);}
+  .marquee-track{display:flex;width:max-content;animation:scrollmq 26s linear infinite;}
+  .marquee.alt .marquee-track{animation-duration:30s;}
+  @keyframes scrollmq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .marquee span{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:clamp(1rem,2.4vw,1.5rem);padding:0 28px;white-space:nowrap;color:#d9e6cd;flex:none;}
+  .marquee span::after{content:'•';margin-left:28px;color:var(--pale);font-size:.8rem;}
+  @media(prefers-reduced-motion:reduce){ .marquee-track{animation:none;} }
+
+  /* TWO PATHS */
+  .paths{padding:110px 0 100px;background:var(--cream);}
+  .paths-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);}
+  .path-card{position:relative;overflow:hidden;min-height:480px;display:block;}
+  .path-card:first-child{border-right:1px solid var(--line);}
+  .path-media{position:absolute;inset:0;}
+  .path-media img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.04) saturate(1.05);transition:transform .7s var(--ease);}
+  .path-card:hover .path-media img{transform:scale(1.06);}
+  .path-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,4,.08) 26%,rgba(6,10,4,.85) 100%);}
+  .path-card-body{position:relative;z-index:2;height:100%;padding:40px 44px;display:flex;flex-direction:column;justify-content:flex-end;}
+  .path-card .path-index{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:1rem;color:var(--green-3);margin-bottom:18px;display:block;}
+  .path-card h3{color:#fdfcf8;font-size:clamp(1.4rem,2.6vw,1.8rem);margin-bottom:14px;line-height:1.2;text-shadow:0 2px 14px rgba(0,0,0,.35);}
+  .path-card p{color:#e3ecda;font-size:1rem;margin-bottom:26px;max-width:420px;text-shadow:0 1px 10px rgba(0,0,0,.35);}
+  @media(max-width:640px){ .path-card{min-height:400px;} }
+
+  /* FOUR CLIENTS */
+  .clients{padding:100px 0;background:var(--pale);}
+  .clients-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .client-card{background:var(--cream);padding:36px 28px;display:flex;flex-direction:column;transition:background .35s var(--ease);}
+  .client-card:hover{background:var(--paper);}
+  .client-card:hover .client-ic{transform:rotate(-8deg) scale(1.08);}
+  .client-ic{width:46px;height:46px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:transform .35s var(--ease);flex:none;}
+  .client-num{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:1rem;color:var(--green-2);margin-bottom:12px;display:block;}
+  .client-card h3{font-size:1.08rem;margin-bottom:10px;line-height:1.3;}
+  .client-card p{color:var(--ink-soft);font-size:.9rem;margin-bottom:20px;flex:1;}
+  .clients-note{margin-top:28px;color:var(--ink-soft);font-size:.88rem;font-style:italic;}
+  @media(max-width:900px){ .clients-grid{grid-template-columns:1fr 1fr;} }
+  @media(max-width:560px){ .clients-grid{grid-template-columns:1fr;} }
+
+  /* PROCESS */
+  .process{padding:100px 0;background:var(--cream);}
+  .process-list{display:grid;grid-template-columns:repeat(5,1fr);gap:28px;margin-bottom:44px;}
+  .process-step{border-top:2px solid var(--line);padding-top:22px;}
+  .process-step .step-ic{color:var(--green-2);margin-bottom:14px;}
+  .process-step .num{font-family:'Fraunces',Georgia,serif;font-style:italic;color:var(--green-2);font-size:1.3rem;display:block;margin-bottom:10px;}
+  .process-step h3{font-size:1rem;margin-bottom:8px;line-height:1.3;}
+  .process-step p{color:var(--ink-soft);font-size:.88rem;}
+  @media(max-width:900px){ .process-list{grid-template-columns:1fr 1fr;} }
+  @media(max-width:560px){ .process-list{grid-template-columns:1fr;} }
+
+  /* QUOTE / PHILOSOPHY */
+  .quote-sec{background:var(--forest);padding:120px 0;text-align:center;position:relative;overflow:hidden;}
+  .quote-mark{font-family:'Fraunces',Georgia,serif;font-size:8rem;line-height:1;color:rgba(255,255,255,.09);position:absolute;top:30px;left:50%;transform:translateX(-50%);pointer-events:none;user-select:none;}
+  .quote-sec blockquote{position:relative;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;color:#fdfcf8;font-size:clamp(1.5rem,3.6vw,2.5rem);line-height:1.32;max-width:900px;margin:0 auto 30px;}
+  .quote-sec .quote-body{position:relative;color:#d3e3c8;font-size:1.02rem;max-width:600px;margin:0 auto;}
+
+  /* ABOUT (reused for Despre mine) */
+  .about{display:grid;grid-template-columns:44% 56%;min-height:640px;}
+  .about-media{position:relative;}
+  .about-body{background:var(--pale);display:flex;align-items:center;padding:7vw 6vw;}
+  .about-body-inner{max-width:480px;}
+  .about-body h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin-bottom:22px;}
+  .about-body p{color:var(--ink-soft);margin-bottom:28px;font-size:1.02rem;}
+  .credit-line{font-size:.84rem;font-weight:700;color:var(--green-2);text-transform:uppercase;letter-spacing:1px;margin-bottom:32px;line-height:2.1;}
+  .credit-line span{margin:0 10px;color:var(--line);font-weight:400;}
+
+  /* BANNER (Din cabinet în sala de formare) */
+  .banner{position:relative;min-height:74vh;display:flex;align-items:center;overflow:hidden;}
+  .banner-media{position:absolute;inset:0;}
+  .banner-text{position:relative;z-index:2;padding:6vh 0;max-width:760px;}
+  .banner-text h2{color:#fdfcf8;font-size:clamp(1.6rem,3.4vw,2.5rem);margin-bottom:18px;line-height:1.18;text-shadow:0 2px 18px rgba(0,0,0,.45);}
+  .banner-text p{color:#e3ecda;margin-bottom:6px;text-shadow:0 1px 10px rgba(0,0,0,.4);}
+  .dash-list{list-style:none;margin:18px 0 30px;}
+  .dash-list li{position:relative;padding-left:24px;margin-bottom:10px;color:#dde8d1;font-size:.98rem;text-shadow:0 1px 8px rgba(0,0,0,.4);}
+  .dash-list li::before{content:'—';position:absolute;left:0;color:var(--green-3);}
+  .fine-print{margin-top:22px;font-size:.82rem;color:#b7cba8;text-transform:uppercase;letter-spacing:1px;}
+
+  .community{padding:100px 0;}
+  .community .kicker-row{display:flex;align-items:center;gap:14px;margin-bottom:44px;}
+  .community .kicker-row .line{flex:1;height:1px;background:var(--line);}
+  .community .kicker-row span{text-transform:uppercase;letter-spacing:2.5px;font-size:.76rem;font-weight:700;color:var(--green-2);white-space:nowrap;}
+  .dossier-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);}
+  .dossier{padding:44px;position:relative;}
+  .dossier:first-child{border-right:1px solid var(--line);}
+  .dossier-mark{width:100%;height:120px;margin-bottom:26px;border-radius:var(--radius);}
+  .dossier-logo{background:#fff;display:flex;align-items:center;justify-content:center;}
+  .dossier-logo img{max-width:52%;max-height:100%;object-fit:contain;filter:none;}
+  .dossier h3{font-size:1.15rem;margin-bottom:12px;line-height:1.3;}
+  .dossier p{color:var(--ink-soft);font-size:.95rem;margin-bottom:24px;}
+
+  /* RESURSE */
+  .resurse{padding:110px 0;background:var(--cream);}
+  .resurse-shelf{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);margin-bottom:30px;}
+  .resurse-shelf.cols-2{grid-template-columns:1fr 1fr;}
+  .resurse-tile{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:40px 30px;background:var(--paper);transition:background .3s;}
+  .resurse-tile:nth-child(even){background:var(--pale);}
+  .resurse-tile:hover{background:#fff;}
+  .resurse-tile .tile-ic{width:52px;height:52px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:22px;transition:transform .35s var(--ease);}
+  .resurse-tile:hover .tile-ic{transform:rotate(-8deg) scale(1.08);}
+  .resurse-tile h3{font-size:1.1rem;margin-bottom:10px;}
+  .resurse-tile p{color:var(--ink-soft);font-size:.92rem;margin-bottom:18px;}
+  @media(max-width:900px){ .resurse-shelf{grid-template-columns:1fr 1fr;} }
+  @media(max-width:560px){ .resurse-shelf,.resurse-shelf.cols-2{grid-template-columns:1fr;} }
+
+  /* CTA FINAL */
+  .cta-final{background:var(--forest);padding:110px 0;text-align:center;}
+  .cta-final h2{color:#fdfcf8;font-size:clamp(1.8rem,4vw,2.7rem);margin-bottom:16px;}
+  .cta-final p{color:#d3e3c8;margin-bottom:44px;font-size:1.02rem;}
+  .cta-buttons{display:flex;gap:22px;flex-wrap:wrap;align-items:center;justify-content:center;}
+  .cta-btn{display:inline-flex;align-items:center;gap:10px;border:1.5px solid rgba(255,255,255,.6);color:#fff;padding:16px 30px;border-radius:var(--radius);font-weight:700;font-size:.96rem;transition:background .3s,border-color .3s;}
+  .cta-btn:hover{background:#fff;color:var(--forest);border-color:#fff;}
+  .cta-btn.solid{background:#fdfcf8;border-color:#fdfcf8;color:var(--forest);}
+  .cta-btn.solid:hover{background:var(--green-3);border-color:var(--green-3);color:var(--forest);}
+  .cta-note{margin-top:34px;}
+  .cta-note a{color:#d3e3c8;border-bottom:1.5px solid rgba(211,227,200,.5);font-weight:700;font-size:.92rem;}
+  .cta-note a:hover{color:#fff;border-color:#fff;}
+
+  /* CONTACT */
+  .contact{display:grid;grid-template-columns:44% 56%;min-height:620px;}
+  .contact-media{position:relative;}
+  .contact-body{background:var(--paper);display:flex;align-items:center;padding:7vw 6vw;}
+  .contact-body-inner{max-width:520px;}
+  .contact-body h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin-bottom:18px;}
+  .contact-body p{color:var(--ink-soft);margin-bottom:26px;}
+  .info-line{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:.96rem;}
+  .info-line .ic{width:30px;height:30px;border:1px solid var(--line);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;flex:none;color:var(--green-2);}
+  .social-line{display:flex;flex-wrap:wrap;align-items:center;margin:26px 0 34px;font-size:.92rem;font-weight:700;}
+  .social-line a{color:var(--ink);border-bottom:1.5px solid transparent;transition:border-color .3s,color .3s;}
+  .social-line a:hover{color:var(--green-2);border-color:var(--green-2);}
+  .social-line span{margin:0 12px;color:var(--line);font-weight:400;}
+
+  .uform{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;justify-content:center;max-width:520px;width:100%;}
+  .uform input{flex:1;min-width:220px;background:transparent;border:none;border-bottom:1.5px solid rgba(255,255,255,.35);padding:12px 2px;color:#fff;font-family:'Manrope',sans-serif;font-size:1rem;}
+  .uform input::placeholder{color:rgba(255,255,255,.5);}
+  .uform input:focus{outline:none;border-color:#fff;}
+  .uform button{background:none;border:none;border-bottom:1.5px solid #fff;color:#fff;font-weight:700;padding:12px 2px;cursor:pointer;display:inline-flex;align-items:center;gap:9px;font-family:'Manrope',sans-serif;font-size:1rem;transition:gap .3s var(--ease);flex:none;}
+  .uform button:hover{gap:15px;}
+  .uform.dark{justify-content:flex-start;max-width:none;flex-direction:column;align-items:stretch;gap:22px;}
+  .uform.dark input,.uform.dark textarea{color:var(--ink);border-bottom-color:var(--line);font-family:'Manrope',sans-serif;font-size:1rem;background:transparent;border-top:none;border-left:none;border-right:none;padding:12px 2px;width:100%;}
+  .uform.dark input::placeholder,.uform.dark textarea::placeholder{color:var(--ink-soft);}
+  .uform.dark input:focus,.uform.dark textarea:focus{outline:none;border-color:var(--ink);}
+  .uform.dark textarea{min-height:90px;resize:vertical;border-bottom:1.5px solid var(--line);}
+  .uform.dark button{color:var(--ink);border-bottom-color:var(--ink);align-self:flex-start;}
+
+  /* YT + FOOTER */
+  .yt-strip{border-top:1px solid var(--line);padding:26px 0;text-align:center;font-weight:700;font-size:.94rem;color:var(--ink);}
+  .yt-strip a{color:var(--green-2);border-bottom:1.5px solid var(--green-2);}
+  .yt-strip a:hover{color:var(--green);border-color:var(--green);}
+  footer.site-footer{padding:56px 0 50px;text-align:center;font-size:.85rem;color:var(--ink-soft);border-top:1px solid var(--line);}
+  .footer-name{font-family:'Fraunces',Georgia,serif;font-size:1.05rem;color:var(--ink);margin-bottom:4px;}
+  .footer-role{font-size:.8rem;color:var(--ink-soft);margin-bottom:24px;}
+  .footer-links{display:flex;justify-content:center;gap:24px;font-size:.82rem;}
+  .footer-links a:hover{color:var(--green-2);}
+  .footer-copy{margin-top:20px;font-size:.78rem;opacity:.7;}
+
+  .back-top{
+    position:fixed;bottom:26px;right:26px;width:44px;height:44px;border-radius:var(--radius);
+    background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:90;
+    border:none;cursor:pointer;font:inherit;padding:0;
+  }
+  .back-top.show{opacity:1;pointer-events:auto;}
+  .back-top:hover{transform:translateY(-4px);background:var(--green-2);}
+
+  /* HERO EXTRAS */
+  .hero-name{font-family:'Fraunces',Georgia,serif;font-style:italic;color:#fdfcf8;font-size:1.3rem;margin-bottom:6px;text-shadow:0 1px 10px rgba(0,0,0,.4);}
+  .hero-role{color:#d3e3c8;font-size:.84rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:26px;text-shadow:0 1px 8px rgba(0,0,0,.4);}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;}
+  .hero-btn{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,.6);color:#fff;padding:13px 24px;border-radius:999px;font-weight:700;font-size:.92rem;transition:background .3s,color .3s,border-color .3s;}
+  .hero-btn:hover{background:#fff;color:var(--forest);border-color:#fff;}
+
+  /* TAG ROW (philosophy) */
+  .tag-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:34px;}
+  .tag-pill{font-size:.8rem;font-weight:700;color:#d3e3c8;border:1.5px solid rgba(211,227,200,.4);padding:8px 16px;border-radius:999px;}
+
+  /* OFFERINGS (cum putem lucra impreuna) */
+  .offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);margin-top:8px;}
+  .offer-card{padding:44px;position:relative;}
+  .offer-card:first-child{border-right:1px solid var(--line);}
+  .offer-card h3{font-size:1.3rem;margin-bottom:8px;}
+  .offer-card .offer-sub{color:var(--green-2);font-weight:700;font-size:.88rem;margin-bottom:20px;display:block;}
+  .offer-list{list-style:none;margin:0 0 26px;}
+  .offer-list li{position:relative;padding-left:22px;margin-bottom:9px;color:var(--ink-soft);font-size:.94rem;}
+  .offer-list li::before{content:'—';position:absolute;left:0;color:var(--green);}
+
+  /* CTA OPTIONS */
+  .cta-options{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:24px;text-align:left;max-width:900px;margin-left:auto;margin-right:auto;}
+  .cta-option h3{color:#fdfcf8;font-size:1.15rem;margin-bottom:10px;}
+  .cta-option p{color:#d3e3c8;margin-bottom:20px;font-size:.94rem;}
+  @media(max-width:760px){
+    .cta-options{grid-template-columns:1fr;}
+    .offer-grid{grid-template-columns:1fr;}
+    .offer-card:first-child{border-right:none;border-bottom:1px solid var(--line);}
+  }
+
+  @media(max-width:900px){
+    .about,.contact{grid-template-columns:1fr;}
+    .about-media,.contact-media{height:340px;}
+    .about-body,.contact-body{padding:52px 28px;}
+    .dossier-grid{grid-template-columns:1fr;}
+    .dossier:first-child{border-right:none;border-bottom:1px solid var(--line);}
+    .paths-grid{grid-template-columns:1fr;}
+    .path-card:first-child{border-right:none;border-bottom:1px solid var(--line);}
+    section .wrap{padding:0 24px;}
+    .header-inner{padding:14px 24px;}
+  }
+  @media(max-width:640px){
+    .paths,.resurse,.cta-final,.community,.clients,.process{padding:70px 0;}
+    .banner-text{padding:4vh 4px;}
+    .dossier{padding:30px 24px;}
+    .hero{height:88vh;height:88dvh;min-height:520px;display:flex;align-items:center;}
+    .hero-content{position:relative;bottom:auto;padding-bottom:0;}
+    .hero-media img{object-position:center 30%;}
+    .section-lead{margin-top:-24px;}
+  }
+  .logo{
+    width: 235px;
+  }
+  @media(max-width:640px){
+    .logo{
+    width: 220px;
+    position: absolute;
+    }
+    .bottom{
+      margin-bottom: -400px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <img class="logo" src="logo.png" alt="">
+    <nav class="index-nav" id="navLinks">
+      <a href="#top">Acasă</a>
+      <a href="practica-clinica.html">Practică clinică</a>
+      <a href="pentru-specialisti.html">Pentru specialiști</a>
+      <a href="https://joclapsiholog.ro/resurse/">Resurse</a>
+      <a href="magazin.html">Magazin</a>
+      <a href="despre-mine.html">Despre mine</a>
+      <a href="#contact" class="contact-box-mobile">Contact</a>
+    </nav>
+    <a href="#contact" class="contact-box">Contact</a>
+    <button class="navtoggle" id="navToggle" aria-label="Meniu de navigare">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-media ph">
+    <img src="Andreea-Abe-Adebowale-foto-Cristina-Nichitus-15-1536x1024.jpg" alt="Andreea Abe Adebowale" id="heroImg">
+    <div class="shade-grad"></div>
+  </div>
+  <div class="wrap hero-content bottom">
+    <h1 class="reveal in">Psihoterapia copilului începe cu înțelegerea relațiilor în care acesta crește.</h1>
+    <div class="hero-name reveal in reveal-delay-1">Andreea Abe Adebowale</div>
+    <div class="hero-role reveal in reveal-delay-1">Psiholog clinician · Psihoterapeut integrativ · Formator · Supervizor</div>
+    <div class="hero-cta reveal in reveal-delay-2">
+    </div>
+    <a href="#directii" class="scrolldown reveal in reveal-delay-3" style="margin-top:54px;">
+      <span class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span>
+      Descoperă
+    </a>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Joacă. Descoperă. Vindecă.</span><span>Joacă. Descoperă. Vindecă.</span><span>Joacă. Descoperă. Vindecă.</span><span>Joacă. Descoperă. Vindecă.</span>
+    <span>Joacă. Descoperă. Vindecă.</span><span>Joacă. Descoperă. Vindecă.</span><span>Joacă. Descoperă. Vindecă.</span><span>Joacă. Descoperă. Vindecă.</span>
+  </div>
+</div>
+
+<section id="directii" class="paths">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow reveal">Direcții</div>
+      <h2 class="reveal in">Două direcții. O singură misiune.</h2>
+    </div>
+    <p class="section-lead reveal" style="margin-top:-30px;">Ajut copiii să crească în relații mai sigure și îi sprijin pe adulții care îi însoțesc să devină prezențe vindecătoare în viața lor.</p>
+  </div>
+  <div class="wrap">
+    <div class="paths-grid reveal">
+      <a href="practica-clinica.html" class="path-card">
+        <div class="path-media">
+          <img src="practica clinica.png" alt="">
+        </div>
+        <div class="path-card-body">
+          <span class="path-index">01</span>
+          <h3>Pentru copii și familii</h3>
+          <p>Evaluare psihologică, psihoterapie, consiliere parentală și intervenții relaționale pentru întregul sistem familial.</p>
+          <span class="text-link light">
+            Descoperă practica clinică
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+      <a href="pentru-specialisti.html" class="path-card">
+        <div class="path-media">
+          <img src="formare-si-supervizare.png" alt="">
+        </div>
+        <div class="path-card-body">
+          <span class="path-index">02</span>
+          <h3>Pentru specialiști</h3>
+          <p>Formare profesională, supervizare și mentorat în psihoterapia copilului, adolescentului și familiei.</p>
+          <span class="text-link light">
+            Descoperă zona pentru specialiști
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="patru-clienti" class="clients">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow reveal">Modelul de lucru</div>
+      <h2 class="reveal in">Patru clienți. Un singur sistem relațional.</h2>
+    </div>
+    <p class="section-lead reveal">În cabinet nu lucrez doar cu simptomul copilului. Lucrez cu povestea dezvoltării sale și cu relațiile în care aceasta s-a construit.</p>
+  </div>
+  <div class="wrap">
+    <div class="clients-grid reveal">
+      <a href="practica-clinica-copil-adolescent.html" class="client-card">
+        <div class="client-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.4 5.5L20 9l-4.3 3.8L17 19l-5-3.2L7 19l1.3-6.2L4 9l5.6-.5Z"/></svg></div>
+        <span class="client-num">01</span>
+        <h3>Copilul / adolescentul</h3>
+        <p>Emoții, comportament, dezvoltare și identitate.</p>
+        <span class="text-link">Vezi mai mult <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="practica-clinica-parinte.html" class="client-card">
+        <div class="client-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3.3"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg></div>
+        <span class="client-num">02</span>
+        <h3>Părintele</h3>
+        <p>Istoria personală, resursele și rolul de bază sigură.</p>
+        <span class="text-link">Vezi mai mult <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="practica-clinica-relatia-parinte-copil.html" class="client-card">
+        <div class="client-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg></div>
+        <span class="client-num">03</span>
+        <h3>Relația părinte–copil</h3>
+        <p>Atașament, coreglare și reconectare.</p>
+        <span class="text-link">Vezi mai mult <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="practica-clinica-familie.html" class="client-card">
+        <div class="client-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11 12 4l8 7"/><path d="M6 10v10h12V10"/></svg></div>
+        <span class="client-num">04</span>
+        <h3>Familia</h3>
+        <p>Dinamica întregului sistem și echilibrul relațional.</p>
+        <span class="text-link">Vezi mai mult <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+    <p class="clients-note reveal">Această perspectivă stă la baza tuturor intervențiilor mele și reprezintă modelul clinic pe care îl dezvolt și îl predau în cadrul APRICAS.</p>
+  </div>
+</section>
+
+<section id="proces" class="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow reveal">Colaborare</div>
+      <h2 class="reveal in">Cum putem lucra împreună?</h2>
+    </div>
+    <div class="offer-grid reveal">
+      <div class="offer-card">
+        <h3>Practică clinică</h3>
+        <span class="offer-sub">Pentru copii, adolescenți, părinți și familii.</span>
+        <ul class="offer-list">
+          <li>Evaluare psihologică</li>
+          <li>Psihoterapie integrativă relațională</li>
+          <li>Consiliere parentală</li>
+          <li>Terapia relației de atașament</li>
+          <li>Intervenții familiale</li>
+        </ul>
+        <a href="practica-clinica.html" class="text-link">
+          Descoperă practica clinică
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="offer-card">
+        <h3>Formare &amp; Supervizare</h3>
+        <span class="offer-sub">Pentru psihologi și psihoterapeuți.</span>
+        <ul class="offer-list">
+          <li>Formare profesională</li>
+          <li>Supervizare în psihoterapie</li>
+          <li>Supervizare în psihologie clinică</li>
+          <li>Mentorat profesional</li>
+          <li>Resurse pentru practică</li>
+        </ul>
+        <a href="pentru-specialisti.html" class="text-link">
+          Explorează programele
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="filosofie" class="quote-sec">
+  <div class="quote-mark" aria-hidden="true">"</div>
+  <div class="wrap">
+    <div class="eyebrow light reveal" style="align-self:center">Cum înțeleg eu psihoterapia</div>
+    <blockquote class="reveal in">„Comportamentul este limbajul unei nevoi relaționale, nu problema în sine.”</blockquote>
+    <p class="quote-body reveal reveal-delay-1" style="margin-bottom:14px;">Nu caut să elimin rapid simptomele. Încerc să înțeleg ce încearcă ele să protejeze.</p>
+    <p class="quote-body reveal reveal-delay-1">În practica mea integrez teoria atașamentului, psihoterapia relațională, terapia prin joc, neurodezvoltarea și lucrul experiențial pentru a construi intervenții adaptate fiecărui copil și fiecărei familii.</p>
+    <div class="tag-row reveal reveal-delay-2">
+      <span class="tag-pill">Dezvoltare</span>
+      <span class="tag-pill">Atașament</span>
+      <span class="tag-pill">Coreglare</span>
+      <span class="tag-pill">Terapie prin joc</span>
+      <span class="tag-pill">Sine în relație</span>
+    </div>
+  </div>
+</section>
+
+<section id="pentru-specialisti">
+  <div class="banner">
+    <div class="banner-media ph pan" style="background-image:url('Andreea-Neagu-foto-Cristina-Nichitus-18-scaled.jpg')" role="img" aria-label="Andreea Abe Adebowale în activitatea de formare">
+      <div class="shade-grad"></div>
+    </div>
+    <div class="wrap banner-text">
+      <div class="eyebrow light reveal">Pentru specialiști</div>
+      <h2 class="reveal">Din cabinet în sala de formare</h2>
+      <p class="reveal reveal-delay-1">Practic ceea ce predau și predau ceea ce continui să învăț în cabinet.</p>
+      <p class="reveal reveal-delay-1">Fiecare caz clinic îmi rafinează modelul de lucru, iar fiecare generație de cursanți contribuie la dezvoltarea unei comunități de profesioniști care privesc copilul dincolo de diagnostic și comportament.</p>
+      <p class="reveal reveal-delay-1">De aceea, APRICAS nu este doar o școală de psihoterapie. Este o comunitate construită în jurul unei întrebări comune:</p>
+      <p class="reveal reveal-delay-2" style="font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:1.2rem;color:#fdfcf8;margin-bottom:26px;">Cum putem deveni adulți care oferă relații vindecătoare copiilor?</p>
+      <a href="pentru-specialisti.html" class="text-link light reveal reveal-delay-2">
+        Descoperă zona pentru specialiști
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <div class="fine-print">Cursuri acreditate de Colegiul Psihologilor din România.</div>
+    </div>
+  </div>
+
+  <div class="community">
+    <div class="wrap">
+      <div class="kicker-row"><span>Comunitate &amp; Asociații</span><div class="line"></div></div>
+      <div class="dossier-grid">
+        <div class="dossier reveal">
+          <div class="dossier-mark dossier-logo"><img src="apricas logo.png" alt="Logo APRICAS"></div>
+          <h3>APRICAS — Asociația de Psihoterapie Relațională Integrativă a Copilului, Adolescentului și Sistemului Familial</h3>
+          <p>Andreea Abe Adebowale este președintele Asociației APRICAS și realizează, prin aceasta, cursuri de formare de lungă și scurtă durată în această specializare.</p>
+          <a href="https://apricas.ro/programe-de-formare-2/" target="_blank" rel="noopener" class="text-link">
+            Accesează APRICAS
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="dossier reveal reveal-delay-1">
+          <div class="dossier-mark ph"><img src="Comunitatea-psihologilor-768x284.jpg" alt="Comunitatea Psihologilor pentru copii și familii din România"></div>
+          <h3>Comunitatea Psihologilor pentru copii și familii din România</h3>
+          <p>Un proiect unic în România, care reunește online, pe Facebook, specialiști în sănătate mintală care lucrează cu copii, adolescenți, familii sau părinți.</p>
+          <a href="https://www.facebook.com/groups/2672404506222088" target="_blank" rel="noopener" class="text-link">
+            Accesează grupul
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resurse" class="resurse">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow reveal">Resurse</div>
+      <h2 class="reveal in">Resurse create din practică</h2>
+    </div>
+    <p class="section-lead reveal">Tot ce am învățat din cabinet devine, în timp, material psihoeducațional pentru părinți, specialiști și pentru oricine lucrează cu copii.</p>
+    <div class="resurse-shelf cols-2 reveal">
+      <a href="https://joclapsiholog.ro/magazin_update/" target="_blank" rel="noopener" class="resurse-tile">
+        <div class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H14v16H5.5A1.5 1.5 0 0 1 4 18.5Z"/><path d="M14 4h4.5c.83 0 1.5.67 1.5 1.5v13c0 .83-.67 1.5-1.5 1.5H14"/></svg></div>
+        <h3>Cărți &amp; instrumente</h3>
+        <p>Resurse pentru părinți, psihologi și cadre didactice.</p>
+        <span class="text-link">Vezi magazinul <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="resurse-biblioteca.html" class="resurse-tile">
+        <div class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+        <h3>Biblioteca Andreea Abe</h3>
+        <p>Articole, ghiduri și Jurnal de părinte.</p>
+        <span class="text-link">Vezi biblioteca <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+    <p class="reveal" style="color:var(--ink-soft);font-size:.94rem;">Găsești și cursurile mele înregistrate <a href="cursuri.html" class="text-link" style="font-size:.94rem;">aici</a>.</p>
+  </div>
+</section>
+
+<section class="about" id="despre">
+  <div class="about-media ph">
+    <img src="Andreea-Abe-Adebowale-foto-Cristina-Nichitus-1-scaled.jpg" alt="Andreea în cabinet" style="object-position:center 18%;">
+  </div>
+  <div class="about-body">
+    <div class="about-body-inner">
+      <div class="eyebrow reveal">Despre mine</div>
+      <h2 class="reveal">Despre mine</h2>
+      <p class="reveal reveal-delay-1">De peste 15 ani, munca mea se construiește în jurul unei întrebări care continuă să mă fascineze: <em>de ce are nevoie un copil pentru a se dezvolta în siguranță în relațiile sale?</em></p>
+      <p class="reveal reveal-delay-1">Această întrebare m-a purtat de la psihologia clinică și psihoterapia copilului către terapia prin joc, lucrul cu părinții, relațiile de atașament și formarea specialiștilor.</p>
+      <p class="reveal reveal-delay-1">Astăzi îmi împart timpul între cabinet, sala de formare și scrierea de resurse care aduc știința dezvoltării mai aproape de familii și profesioniști.</p>
+      <div class="credit-line reveal reveal-delay-2">Psiholog clinician principal <span>/</span> Psihoterapeut integrativ principal <span>/</span> Terapeut de familie <span>/</span> Formator și Supervizor în Psihologie Clinică și Psihoterapie Integrativă</div>
+      <a href="despre-mine.html" class="text-link reveal reveal-delay-2">
+        Citește mai mult
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <div class="eyebrow light reveal" style="align-self:center">Ai ajuns până aici</div>
+    <h2 class="reveal">Probabil cauți unul dintre aceste două lucruri</h2>
+    <div class="cta-options reveal reveal-delay-1">
+      <div class="cta-option">
+        <h3>Caut sprijin pentru copilul sau familia mea</h3>
+        <p>Hai să înțelegem împreună ce are nevoie relația voastră în acest moment.</p>
+        <a href="#contact" class="cta-btn solid">
+          Programează o consultație
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="cta-option">
+        <h3>Sunt specialist și vreau să mă dezvolt profesional</h3>
+        <p>Descoperă programele de formare, supervizare și mentorat.</p>
+        <br>
+        <a href="pentru-specialisti.html" class="cta-btn">
+          Explorează resursele
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="contact-media ph">
+    <img src="Andreea-Neagu-foto-Cristina-Nichitus-13-1024x1536.jpg" alt="Andreea Abe Adebowale">
+  </div>
+  <div class="contact-body">
+    <div class="contact-body-inner">
+      <div class="eyebrow reveal">Contact</div>
+      <h2 class="reveal">Contact</h2>
+      <p class="reveal reveal-delay-1">Adresa: Strada Cercului, nr.2, Sector 2, București</p>
+      <div class="info-line reveal reveal-delay-1">
+        <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span>
+        contact@joclapsiholog.ro
+      </div>
+      <div class="info-line reveal reveal-delay-1">
+        <span class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+        Program: Joi-Vineri : 12.00-18.00
+      </div>
+      <div class="social-line reveal reveal-delay-2">
+        <a href="https://www.facebook.com/andreea.neagu19/" target="_blank" rel="noopener">Facebook</a><span>/</span>
+        <a href="https://www.instagram.com/andreeaabe_neagu_psi/?hl=en" target="_blank" rel="noopener">Instagram</a><span>/</span>
+        <a href="https://youtu.be/cxTR6PSwGNo?si=Zj68n5t8zKwNSWxe" target="_blank" rel="noopener">Youtube</a><span>/</span>
+        <a href="https://www.tiktok.com/@andreeaabeneagu.psi" target="_blank" rel="noopener">TikTok</a>
+      </div>
+      <form class="uform dark reveal reveal-delay-2" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Mesaj trimis ✓';">
+        <input type="text" placeholder="Numele tău" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Mesajul tău"></textarea>
+        <button type="submit">Trimite mesajul
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="footer-name">Andreea Abe Adebowale</div>
+  <div class="footer-role">Psiholog clinician</div>
+  <div class="footer-links">
+    <a href="https://joclapsiholog.ro/index.php/termeni-si-conditii/" target="_blank" rel="noopener">Termeni și condiții</a>
+    <a href="https://joclapsiholog.ro/index.php/protectia-datelor-cu-caracter-personal/" target="_blank" rel="noopener">Protecția datelor cu caracter personal (GDPR)</a>
+  </div>
+  <div class="footer-copy">© 2026 Toate drepturile rezervate</div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Înapoi sus" title="Sus">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  const backTop = document.getElementById('backTop');
+  const heroImg = document.getElementById('heroImg');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = window.matchMedia('(hover: none)').matches;
+
+  function onScroll(){
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 10);
+    backTop.classList.toggle('show', y > 500);
+    if (!reduceMotion && !isTouch && heroImg) {
+      heroImg.style.transform = `translateY(${Math.min(y * 0.04, 26)}px) scale(1.035)`;
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.setAttribute('aria-expanded', 'false');
+  function closeNav() {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', open);
+    document.body.classList.toggle('nav-open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeNav();
+      navToggle.focus();
+    }
+  });
+
+  const revealEls = document.querySelectorAll('.reveal, .eyebrow');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.15});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

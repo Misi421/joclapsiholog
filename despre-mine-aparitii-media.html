@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apariții, conferințe & media — Andreea Abe Adebowale</title>
+<meta name="description" content="Conferințe, workshopuri, prezentări și proiecte psihoeducaționale susținute de Andreea Abe Adebowale în România și în străinătate.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101a0c;
+    --ink-soft:#4c5a43;
+    --green:#4F873E;
+    --forest:color-mix(in srgb, var(--green) 95%, black);
+    --forest-2:color-mix(in srgb, var(--green) 70%, black);
+    --green-2:color-mix(in srgb, var(--green) 80%, black);
+    --green-3:color-mix(in srgb, var(--green) 100%, white);
+    --pale:color-mix(in srgb, var(--green) 7%, white);
+    --cream:#faf9f4;
+    --paper:#ffffff;
+    --line:rgba(16,26,12,.15);
+    --line-light:rgba(255,255,255,.18);
+    --radius:4px;
+    --maxw:1320px;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',system-ui,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  body.nav-open{overflow:hidden;}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;font-weight:500;letter-spacing:.1px;color:var(--ink);}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+  ::selection{background:var(--green);color:#fff;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important;}
+  }
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.12s;}
+  .reveal-delay-2{transition-delay:.24s;}
+
+  .text-link{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.94rem;color:var(--green-2);padding-bottom:4px;border-bottom:1.5px solid var(--green-2);transition:gap .3s var(--ease),color .3s,border-color .3s;}
+  .text-link:hover{gap:15px;color:var(--green);border-color:var(--green);}
+  .text-link svg{transition:transform .3s var(--ease);flex:none;}
+  .text-link:hover svg{transform:translateX(3px);}
+
+  .eyebrow{position:relative;display:inline-block;text-transform:uppercase;letter-spacing:3px;font-size:.72rem;font-weight:700;color:var(--green-2);padding-bottom:16px;margin-bottom:6px;}
+  .eyebrow::after{content:'';position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--green);transition:width .9s var(--ease) .15s;}
+  .eyebrow.in::after{width:52px;}
+
+  .breadcrumb{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--ink-soft);margin-bottom:22px;flex-wrap:wrap;}
+  .breadcrumb a{color:var(--green-2);}
+  .breadcrumb a:hover{color:var(--green);}
+
+  /* READING PROGRESS */
+  .reading-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--green);z-index:150;}
+
+  /* HEADER */
+  .site-header{position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:0 0 0 0 rgba(16,26,12,0);transition:border-color .5s var(--ease),box-shadow .5s var(--ease);}
+  .site-header::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--cream);transition:background .5s var(--ease),backdrop-filter .5s var(--ease);}
+  .site-header.scrolled{border-bottom-color:rgba(16,26,12,.09);box-shadow:0 10px 30px -22px rgba(16,26,12,.35);}
+  .site-header.scrolled::before{background:rgba(250,249,244,.78);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);}
+  .header-inner{display:flex;align-items:center;gap:32px;max-width:var(--maxw);margin:0 auto;padding:16px 40px;}
+  .brand{display:flex;align-items:center;gap:10px;flex:none;}
+  .brand-icon{width:32px;height:32px;flex:none;}
+  .brand-name{font-family:'Fraunces',Georgia,serif;font-size:1rem;}
+  .index-nav{display:flex;gap:22px;align-items:center;font-size:.86rem;font-weight:600;flex:1;}
+  .index-nav a{position:relative;color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap;}
+  .index-nav a:hover{opacity:1;color:var(--green-2);}
+  .index-nav a.current{opacity:1;color:var(--green-2);}
+  .contact-box{flex:none;border:1.5px solid var(--ink);padding:9px 20px;font-weight:700;font-size:.86rem;border-radius:var(--radius);transition:background .3s,color .3s,border-color .3s;}
+  .contact-box:hover{background:var(--ink);color:#fff;}
+  .navtoggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;margin-left:auto;flex:none;position:relative;z-index:201;}
+  .navtoggle span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s,opacity .3s;}
+  .navtoggle.open span{background:#fff;}
+  .navtoggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .navtoggle.open span:nth-child(2){opacity:0;}
+  .navtoggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .contact-box-mobile{display:none;}
+
+  @media(max-width:900px){
+    .index-nav{position:fixed;inset:0;z-index:200;background:var(--pale);flex-direction:column;justify-content:flex-start;align-items:flex-start;padding:90px 34px 40px;gap:2px;transform:translateY(-100%);opacity:0;transition:transform .5s var(--ease),opacity .4s;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    }
+    .index-nav.open{transform:translateY(0);opacity:1;}
+    .index-nav a{font-size: 1.5rem;padding: 13px 0;width: 100%;opacity: 1;font-family: 'Fraunces', Georgia, serif;padding-left: 25px;}
+    .index-nav a.current{opacity: 1;color: var(--pale);background-color: var(--green);border-radius: 20px;
+    }   
+    .contact-box{display:none;}
+    .contact-box-mobile{display:inline-flex;margin-top:26px;color:#fff;padding:11px 24px;font-weight:700;border-radius:var(--radius);font-size:.9rem;}
+    .navtoggle{display:flex;}
+    .navtoggle.open span{background:#000;}
+  }
+
+  section{position:relative;}
+
+  /* PAGE INTRO */
+  .page-intro{padding:56px 0 90px;}
+  .intro-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:70px;align-items:center;}
+  .intro-grid h1{font-size:clamp(2rem,4.2vw,3rem);margin-bottom:22px;}
+  .intro-grid .lead{color:var(--ink-soft);font-size:1.08rem;margin-bottom:18px;}
+  .intro-grid .lead:last-of-type{margin-bottom:0;}
+  .intro-photo{width:100%;aspect-ratio:3/4;background:var(--pale);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .intro-photo img{width:100%;height:100%;object-fit:cover;filter:contrast(1.03) saturate(1.04);}
+  @media(max-width:900px){
+    .intro-grid{grid-template-columns:1fr;gap:36px;}
+    .intro-photo{max-width:420px;margin:0 auto;aspect-ratio:3/4;}
+  }
+
+  /* QUICK NAV */
+  .quicknav{display:flex;gap:10px;flex-wrap:wrap;padding-top:32px;margin-top:40px;border-top:1px solid var(--line);}
+  .quicknav a{font-size:.82rem;font-weight:700;color:var(--forest-2);padding:8px 16px;border:1.5px solid var(--green);border-radius:999px;transition:color .25s,background .25s;white-space:nowrap;}
+  .quicknav a:hover{color:#fff;background:var(--green);}
+  @media(max-width:640px){
+    .quicknav{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+    .quicknav::-webkit-scrollbar{display:none;}
+  }
+
+  .intro-photo-wrap{position:relative;}
+  .intro-photo-wrap::before{
+    content:'';position:absolute;top:-18px;right:-18px;width:100%;height:100%;
+    background:var(--green);opacity:.9;border-radius:var(--radius);z-index:0;
+  }
+  .intro-photo-wrap .intro-photo{position:relative;z-index:1;}
+  @media(max-width:640px){ .intro-photo-wrap::before{top:-12px;right:-12px;} }
+
+  /* ARTICLE */
+  .article{padding:70px 0;}
+  .article-grid{display:grid;grid-template-columns:220px 1fr;gap:64px;max-width:960px;margin:0 auto;scroll-margin-top:100px;}
+  .article-grid + .article-grid{border-top:1px solid var(--line);padding-top:64px;margin-top:64px;}
+  .article-label{display:flex;flex-direction:column;align-items:flex-start;text-transform:uppercase;letter-spacing:2px;font-size:.76rem;font-weight:700;color:var(--green-2);padding-top:2px;}
+  .section-icon{width:36px;height:36px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:14px;flex:none;}
+  .section-icon svg{width:17px;height:17px;}
+  .article-body h2{position:relative;font-size:clamp(1.5rem,2.6vw,1.9rem);margin-bottom:28px;padding-bottom:16px;}
+  .article-body h2::after{content:'';position:absolute;left:0;bottom:0;width:42px;height:3px;border-radius:2px;background:var(--green);}
+  .article-body h3{font-size:1.08rem;margin:34px 0 14px;}
+  .article-body h3:first-of-type{margin-top:0;}
+  .article-body p{color:var(--ink-soft);margin-bottom:18px;font-size:1.02rem;max-width:680px;}
+  .article-body p:last-child{margin-bottom:0;}
+
+  .sub-head{font-weight:700;color:var(--ink);font-size:.92rem;letter-spacing:.5px;text-transform:uppercase;margin:24px 0 10px;}
+  .sub-head:first-of-type{margin-top:4px;}
+
+  .dash-list{list-style:none;max-width:680px;margin-bottom:8px;}
+  .dash-list li{position:relative;padding-left:24px;margin-bottom:11px;color:var(--ink-soft);font-size:.98rem;line-height:1.55;}
+  .dash-list li::before{content:'—';position:absolute;left:0;color:var(--green);}
+  .dash-list li strong{color:var(--ink);}
+
+  .note-box{background:var(--pale);border-left:3px solid var(--green);padding:18px 22px;margin-top:28px;font-size:.9rem;color:var(--ink-soft);border-radius:0 var(--radius) var(--radius) 0;max-width:680px;}
+
+  .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px;}
+  .related-card{background:var(--paper);padding:26px 24px;transition:background .3s;}
+  .related-card:hover{background:var(--pale);}
+  .related-card h3{margin:0 0 8px !important;font-size:1rem;}
+  .related-card p{font-size:.9rem;margin-bottom:14px !important;}
+  @media(max-width:760px){ .related-grid{grid-template-columns:1fr;} }
+
+  .cta-block{padding:90px 0;text-align:center;}
+  .cta-block h2{font-size:clamp(1.6rem,3.2vw,2.2rem);margin-bottom:18px;}
+  .cta-block p{color:var(--ink-soft);max-width:520px;margin:0 auto 30px;}
+  .cta-row{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;}
+
+  footer.site-footer{padding:40px 0 46px;text-align:center;font-size:.85rem;color:var(--ink-soft);border-top:1px solid var(--line);}
+  .footer-links{display:flex;justify-content:center;gap:24px;margin-top:12px;font-size:.82rem;}
+  .footer-links a:hover{color:var(--green-2);}
+
+  .back-top{
+    position:fixed;bottom:26px;right:26px;width:44px;height:44px;border-radius:var(--radius);
+    background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:90;
+  }
+  .back-top.show{opacity:1;pointer-events:auto;}
+  .back-top:hover{transform:translateY(-4px);background:var(--green-2);}
+
+  @media(max-width:900px){
+    section .wrap{padding:0 24px;}
+    .header-inner{padding:14px 24px;}
+    .article-grid{grid-template-columns:1fr;gap:16px;}
+    .article-grid + .article-grid{margin-top:48px;padding-top:48px;}
+  }
+  @media(max-width:640px){
+    .page-intro{padding:40px 0 60px;}
+    .article{padding:56px 0;}
+    .cta-block{padding:64px 0;}
+  }
+.logo{
+    width: 235px;
+  }
+  @media(max-width:640px){
+    .logo{
+    width: 220px;
+    position: absolute;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <img class="logo" src="logo.png" alt="">
+    <nav class="index-nav" id="navLinks">
+      <a href="acasaandreea.html#top">Acasă</a>
+      <a href="practica-clinica.html">Practică clinică</a>
+      <a href="pentru-specialisti.html">Pentru specialiști</a>
+      <a href="resurse.html">Resurse</a>
+      <a href="magazin.html">Magazin</a>
+      <a href="despre-mine.html" class="current">Despre mine</a>
+      <a href="acasaandreea.html#contact" class="contact-box-mobile">Contact</a>
+    </nav>
+    <a href="acasaandreea.html#contact" class="contact-box">Contact</a>
+    <button class="navtoggle" id="navToggle" aria-label="Meniu de navigare">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="page-intro">
+  <div class="wrap">
+    <div class="breadcrumb reveal in"><a href="despre-mine.html">Despre mine</a> / Apariții, conferințe & media</div>
+    <div class="intro-grid">
+      <div>
+        <div class="eyebrow in">Prezență publică</div>
+        <h1 class="reveal in">Apariții, conferințe & media</h1>
+        <p class="lead reveal in reveal-delay-1">Anii de practică clinică au adus, firesc, și cereri de a împărtăși din această experiență publicului larg — celor interesați de creștere personală, de parentaj și de dezvoltarea copilului.</p>
+        <p class="lead reveal in reveal-delay-2">Aici găsești conferințele, workshopurile și prezentările susținute de-a lungul timpului, în România și în străinătate.</p>
+      </div>
+      <div class="intro-photo-wrap reveal in reveal-delay-1">
+        <div class="intro-photo">
+          <img src="https://joclapsiholog.ro/wp-content/uploads/2025/07/Andreea-Abe-Adebowale-foto-Cristina-Nichitus-1-scaled.jpg" alt="Andreea Abe Adebowale">
+        </div>
+      </div>
+    </div>
+    <nav class="quicknav reveal reveal-delay-2">
+      <a href="#conferinte">Conferințe și prelegeri</a>
+      <a href="#proiecte">Proiecte psihoeducaționale</a>
+      <a href="#media">Prezență media</a>
+    </nav>
+  </div>
+</section>
+
+<section class="article">
+  <div class="wrap">
+
+    <div class="article-grid reveal" id="conferinte">
+      <div class="article-label">
+        <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></span>
+        Conferințe
+      </div>
+      <div class="article-body">
+        <h2>Susținere conferințe, prelegeri, cursuri</h2>
+
+        <div class="sub-head">România</div>
+        <ul class="dash-list">
+          <li>Workshop „Terapia prin joc integrativă în lucrul cu copiii și părinții lor”, în cadrul Conferinței internaționale ARPI, „Între tradiție și inovație” (06.2024)</li>
+          <li>Workshop „Autoreglarea copiilor. Perspective teoretice și instrumente practice”, în cadrul Conferinței Internaționale „Abordări moderne în logopedie și consiliere psihopedagogică”, Centrul Județean de Resurse și Asistență Educațională Brașov (05.2024)</li>
+          <li>Workshop „Terapia prin joc în lucrul cu copiii adoptați”, în cadrul Conferinței de Psihologie 3A: Atașament/Adopție/Adicție, organizată de Asociația Română de Psihopedagogie Aplicată, București (11.2023)</li>
+          <li>Workshop „Terapia prin joc integrativ ca instrument creativ de accesare a Sinelui” — Conferința ARP „Psihologie și Tehnologie: Conectați la viitor” (2021)</li>
+        </ul>
+
+        <div class="sub-head">Croația</div>
+        <ul class="dash-list">
+          <li>Susținere workshop „Experiential evaluation of the parent-child attachment relationship” — Centar Proventus, școală de formare în Psihoterapie din Zagreb, Croația (2023, 2024, 2025, 2026)</li>
+        </ul>
+
+        <div class="sub-head">Grecia</div>
+        <ul class="dash-list">
+          <li>Prezentare „Integrative Play Therapy as a Creative Means to accessing the Self” — 10th European Conference „Creativity and Social Responsibility”, European Association for Integrative Psychotherapy, Greek Association for Integrative Counselling &amp; Psychotherapy, Grecia (2021)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="article-grid reveal" id="proiecte">
+      <div class="article-label">
+        <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="18" cy="8" r="3"/><path d="M22 21v-1a3.5 3.5 0 0 0-3-3.5"/></svg></span>
+        Proiecte
+      </div>
+      <div class="article-body">
+        <h2>Prezentări și proiecte psihoeducaționale</h2>
+        <ul class="dash-list">
+          <li>Speaker conferința „Dialoguri cu sens despre sănătatea fizică și emoțională a copiilor”, prezentare pe tema „Jocul și Joaca. Baza dezvoltării și a învățării în primii ani de viață”, organizată de Asociația Din grijă pentru Copii, Craiova, 10.2025</li>
+          <li>Speaker conferința „Learning tapestry. The future of Education”, organizată de Verita International School, 06.2025</li>
+          <li>Coordonator Inițiativa Națională Anti-Drog a echipei multidisciplinare de educație și prevenție, București, 2025 — proiect inițiat de deputat Ramona Ioana Bruynseels</li>
+          <li>Speaker eveniment psihoeducațional „Zilele Psy. Dezvoltarea psihoemoțională și cognitivă a copilului școlar”, organizat de psiholog Ionela Stoica &amp; Andreea Răduță, Sinaia, 04.2025</li>
+          <li>Speaker conferința „Prevenția înseamnă viață. Stop drogurilor”, organizată de Asociația Antidrog Est-Europeană, București, 04.2025</li>
+          <li>Speaker conferința „Viața cu alergii. Mituri, adevăruri și drumul către soluții”, organizată de Asociația Română de Educație în Alergii, București, 03.2025</li>
+          <li>Speaker conferința „Monterra EduTalk. Sunt părintele de care am nevoie”, organizată de Școala Monterra, București, 11.2024</li>
+          <li>Speaker eveniment psihoeducațional „Zilele Psy. Dezvoltarea psihoemoțională și cognitivă a copilului școlar”, organizat de psiholog Ionela Stoica &amp; Andreea Răduță, Ploiești, 10.2024</li>
+          <li>Speaker conferința „Learning tapestry. The future of Education”, organizată de Verita International School, 06.2024</li>
+          <li>Speaker Summit Alergii, organizat de Asociația Română de Educație în Alergii, 04.2024</li>
+          <li>Speaker conferința „Copilul și emoțiile. Când comportamentele celor mici (ne) vorbesc”, organizată de Asociația Din grijă pentru Copii, 11.2023</li>
+          <li>Speaker conferința „Mami, voi fi bine?”, organizată de Prințesa urbană, în colaborare cu Editura Univers, București, 10.2023</li>
+          <li>Speaker conferința „Copilăria mică, Grădinița și școala. Adolescența — Între poezie și provocare”, organizată de Prințesa urbană, în colaborare cu Editura Univers, București, 04.2023</li>
+          <li>Speaker conferința „Copilul și mâncarea. O poveste, zeci de provocări”, organizată de Asociația Din grijă pentru Copii, București, 04.2023</li>
+          <li>Speaker conferința „Grija de sine”, organizată de Asociația Din grijă pentru Copii, București, 02.2023</li>
+          <li>Speaker conferința „Școli fără Bullying în sectorul 3”, organizată de Asociația Părinților Isteți, București, 11.2018</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="article-grid reveal" id="media">
+      <div class="article-label">
+        <span class="section-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M17 2l-5 5-5-5"/><circle cx="12" cy="14.5" r="3.5"/></svg></span>
+        Media
+      </div>
+      <div class="article-body">
+        <h2>Prezență în social media și mass-media</h2>
+        <p>Pe lângă conferințe și workshopuri, Andreea împărtășește constant conținut psihoeducațional despre parentaj, dezvoltarea copilului și terapia prin joc pe rețelele sociale ale cabinetului, și a participat la apariții TV pe aceste teme.</p>
+        <div class="note-box">Aici pot fi adăugate, pe măsură ce sunt disponibile, linkuri către emisiuni TV, podcasturi sau articole din presă la care Andreea a participat — dacă ai materiale concrete (nume de emisiuni, linkuri, date), le pot integra direct în această secțiune.</div>
+        <div class="note-box" style="margin-top:14px;">Evenimentele și conferințele organizate de Asociația APRICAS au propria lor pagină și nu sunt duplicate aici — le găsești pe <a href="https://apricas.ro/programe-de-formare-2/" target="_blank" rel="noopener" style="color:var(--green-2);font-weight:700;">website-ul APRICAS</a>.</div>
+      </div>
+    </div>
+
+    <div class="article-grid reveal">
+      <div class="article-label">Explorează</div>
+      <div class="article-body">
+        <div class="related-grid reveal">
+          <a class="related-card" href="despre-mine.html">
+            <h3>Despre mine</h3>
+            <p>Parcursul profesional, practica clinică și acreditările.</p>
+            <span class="text-link" style="border:none;padding:0;">Vezi pagina</span>
+          </a>
+          <a class="related-card" href="pentru-specialisti.html">
+            <h3>Pentru specialiști</h3>
+            <p>Formare, supervizare și mentorat pentru colegii de breaslă.</p>
+            <span class="text-link" style="border:none;padding:0;">Vezi pagina</span>
+          </a>
+          <a class="related-card" href="https://apricas.ro/programe-de-formare-2/" target="_blank" rel="noopener">
+            <h3>APRICAS</h3>
+            <p>Asociația de formare pe care o coordonez.</p>
+            <span class="text-link" style="border:none;padding:0;">Vezi website-ul</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-block">
+  <div class="wrap">
+    <h2 class="reveal">Hai să vorbim</h2>
+    <p class="reveal reveal-delay-1">Dacă ai o conferință, un proiect psihoeducațional sau o colaborare media în minte, sunt aici.</p>
+    <div class="cta-row reveal reveal-delay-2">
+      <a href="despre-mine.html" class="text-link">
+        Înapoi la Despre mine
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="acasaandreea.html#contact" class="text-link">
+        Contactează-mă
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div>© 2026 Toate drepturile rezervate Andreea Abe Adebowale</div>
+  <div class="footer-links">
+    <a href="https://joclapsiholog.ro/index.php/termeni-si-conditii/" target="_blank" rel="noopener">Termeni și condiții</a>
+    <a href="https://joclapsiholog.ro/index.php/protectia-datelor-cu-caracter-personal/" target="_blank" rel="noopener">Protecția datelor cu caracter personal (GDPR)</a>
+  </div>
+</footer>
+
+<div class="back-top" id="backTop" title="Sus">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</div>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  const backTop = document.getElementById('backTop');
+
+  const readingProgress = document.getElementById('readingProgress');
+
+  function onScroll(){
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 10);
+    backTop.classList.toggle('show', y > 500);
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (y / docHeight) * 100 : 0;
+    readingProgress.style.width = Math.min(100, Math.max(0, pct)) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', open);
+    document.body.classList.toggle('nav-open', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    document.body.classList.remove('nav-open');
+  }));
+
+  const revealEls = document.querySelectorAll('.reveal, .eyebrow');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.15});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

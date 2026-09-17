@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magazin — Andreea Abe Adebowale</title>
+<meta name="description" content="Resurse și materiale organizate pe categorii — pentru psihologi, pentru părinți și pentru cadre didactice.">
+<link rel="canonical" href="https://joclapsiholog.ro/magazin.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 4 L44 20 V44 H4 V20 Z' fill='%234F883D'/%3E%3Ccircle cx='17' cy='30' r='4.2' fill='%23fff'/%3E%3Cpath d='M17 34.5c-4 0-7 2-7 5.5h14c0-3.5-3-5.5-7-5.5Z' fill='%23fff'/%3E%3Ccircle cx='30' cy='27' r='5.2' fill='%23fff'/%3E%3Cpath d='M30 32.5c-5 0-8.5 2.4-8.5 6.5h17c0-4.1-3.5-6.5-8.5-6.5Z' fill='%23fff'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Andreea Abe Adebowale — Psiholog clinician">
+<meta property="og:title" content="Magazin — Andreea Abe Adebowale">
+<meta property="og:description" content="Resurse și materiale organizate pe categorii — pentru psihologi, pentru părinți și pentru cadre didactice.">
+<meta property="og:url" content="https://joclapsiholog.ro/magazin.html">
+<meta property="og:locale" content="ro_RO">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --ink:#101a0c;
+    --ink-soft:#4c5a43;
+    --green:#4F873E;
+    --forest:color-mix(in srgb, var(--green) 95%, black);
+    --forest-2:color-mix(in srgb, var(--green) 70%, black);
+    --green-2:color-mix(in srgb, var(--green) 80%, black);
+    --green-3:color-mix(in srgb, var(--green) 100%, white);
+    --pale:color-mix(in srgb, var(--green) 7%, white);
+    --accent:#D98C5F;
+    --cream:#faf9f4;
+    --paper:#ffffff;
+    --line:rgba(16,26,12,.12);
+    --line-light:rgba(255,255,255,.18);
+    --radius:4px;
+    --maxw:1320px;
+    --ease:cubic-bezier(.16,1,.3,1);
+    --shadow-card:0 20px 46px -30px rgba(16,26,12,.25);
+    --shadow-lift:0 26px 60px -30px rgba(16,26,12,.32);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',system-ui,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  body.nav-open{overflow:hidden;}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;font-weight:500;letter-spacing:.1px;color:var(--ink);}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+  ::selection{background:var(--green);color:#fff;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important;}
+  }
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.12s;}
+  .reveal-delay-2{transition-delay:.24s;}
+  .reveal-delay-3{transition-delay:.36s;}
+
+  .tag-pill{display:inline-block;background:var(--pale);color:var(--forest-2);font-weight:700;font-size:.72rem;letter-spacing:1.6px;text-transform:uppercase;padding:8px 18px;border-radius:999px;}
+
+  /* READING PROGRESS */
+  .reading-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--green);z-index:150;}
+
+  /* HEADER */
+  .site-header{position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:0 0 0 0 rgba(16,26,12,0);transition:border-color .5s var(--ease),box-shadow .5s var(--ease);}
+  .site-header::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--cream);transition:background .5s var(--ease),backdrop-filter .5s var(--ease);}
+  .site-header.scrolled{border-bottom-color:rgba(16,26,12,.09);box-shadow:0 10px 30px -22px rgba(16,26,12,.35);}
+  .site-header.scrolled::before{background:rgba(250,249,244,.78);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);}
+  .header-inner{display:flex;align-items:center;gap:32px;max-width:var(--maxw);margin:0 auto;padding:16px 40px;}
+  .brand{display:flex;align-items:center;gap:10px;flex:none;}
+  .brand-icon{width:32px;height:32px;flex:none;}
+  .brand-name{font-family:'Fraunces',Georgia,serif;font-size:1rem;}
+  .index-nav{display:flex;gap:22px;align-items:center;font-size:.86rem;font-weight:600;flex:1;}
+  .index-nav a{position:relative;color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap;}
+  .index-nav a:hover{opacity:1;color:var(--green-2);}
+  .index-nav a.current{opacity:1;color:var(--green-2);}
+  .contact-box{flex:none;border:1.5px solid var(--ink);padding:9px 20px;font-weight:700;font-size:.86rem;border-radius:var(--radius);transition:background .3s,color .3s,border-color .3s;}
+  .contact-box:hover{background:var(--ink);color:#fff;}
+  .navtoggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;margin-left:auto;flex:none;position:relative;z-index:201;}
+  .navtoggle span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s,opacity .3s;}
+  .navtoggle.open span{background:#fff;}
+  .navtoggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .navtoggle.open span:nth-child(2){opacity:0;}
+  .navtoggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .contact-box-mobile{display:none;}
+
+  @media(min-width:901px) and (max-width:1120px){
+    .index-nav{gap:13px;font-size:.79rem;}
+    .contact-box{padding:9px 14px;font-size:.79rem;}
+    .header-inner{gap:16px;}
+  }
+
+  @media(max-width:900px){
+    .index-nav{position:fixed;inset:0;z-index:200;background:var(--pale);flex-direction:column;justify-content:flex-start;align-items:flex-start;padding:90px 34px 40px;gap:2px;transform:translateY(-100%);opacity:0;transition:transform .5s var(--ease),opacity .4s;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    }
+    .index-nav.open{transform:translateY(0);opacity:1;}
+    .index-nav a{font-size: 1.5rem;padding: 13px 0;width: 100%;opacity: 1;font-family: 'Fraunces', Georgia, serif;padding-left: 25px;}
+    .index-nav a.current{opacity: 1;color: var(--pale);background-color: var(--green);border-radius: 20px;
+    }   
+    .contact-box{display:none;}
+    .contact-box-mobile{display:inline-flex;margin-top:26px;color:#fff;padding:11px 24px;font-weight:700;border-radius:var(--radius);font-size:.9rem;}
+    .navtoggle{display:flex;}
+    .navtoggle.open span{background:#000;}
+  }
+
+  section{position:relative;}
+
+  /* PAGE INTRO — centered, no photo */
+  .page-intro{padding:72px 0 40px;text-align:center;}
+  .page-intro .tag-pill{margin-bottom:20px;}
+  .page-intro h1{font-size:clamp(2rem,4vw,2.7rem);line-height:1.18;margin-bottom:18px;max-width:680px;margin-left:auto;margin-right:auto;}
+  .page-intro .lead{color:var(--ink-soft);font-size:1.05rem;max-width:560px;margin:0 auto;}
+
+  /* CATALOG — real products per category, sourced from the live shop */
+  .catalog-note{max-width:1080px;margin:0 auto;padding:0 0 8px;}
+  .catalog-note p{color:var(--ink-soft);font-size:.86rem;font-style:italic;text-align:center;}
+  .cat-section{padding:60px 0;max-width:1080px;margin:0 auto;border-top:1px solid var(--line);scroll-margin-top:96px;}
+  .cat-section:first-of-type{border-top:none;padding-top:8px;}
+  .cat-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px;}
+  .cat-head h2{font-size:1.9rem;}
+  .cat-count{display:inline-block;background:var(--pale);color:var(--forest-2);font-size:.78rem;font-weight:700;letter-spacing:.2px;padding:6px 15px;border-radius:999px;}
+  .cat-sub{position:relative;padding-left:17px;color:var(--ink-soft);font-size:.72rem;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin:48px 0 22px;}
+  .cat-sub::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:7px;height:7px;border-radius:50%;background:var(--green);}
+  .cat-sub:first-of-type{margin-top:36px;}
+  .prod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+  .prod-card{background:var(--paper);border:1px solid var(--line);border-radius:calc(var(--radius) + 12px);overflow:hidden;display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .3s;}
+  .prod-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lift);border-color:var(--green);}
+  .prod-photo{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--pale);}
+  .prod-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease);}
+  .prod-card:hover .prod-photo img{transform:scale(1.06);}
+  .prod-body{padding:26px 28px 28px;display:flex;flex-direction:column;flex:1;}
+  .prod-kicker{display:block;width:30px;height:3px;border-radius:2px;background:var(--green);margin-bottom:16px;}
+  .prod-card h3{font-size:1.14rem;line-height:1.42;margin-bottom:22px;flex:1;font-weight:500;color:var(--ink);}
+  .prod-link{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.86rem;color:var(--green-2);margin-top:auto;transition:gap .3s var(--ease),color .3s;}
+  .prod-link:hover{color:var(--green);gap:12px;}
+  .prod-card.soon{border-style:dashed;}
+  .prod-card.soon .prod-photo{background:var(--pale);}
+  .prod-card.soon .prod-photo img{filter:grayscale(.55) opacity(.8);}
+  .prod-card.soon .prod-kicker{background:var(--line);}
+  .prod-card.soon h3{color:var(--ink-soft);}
+  .soon-badge{display:inline-block;background:var(--pale);color:var(--forest-2);font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-top:auto;align-self:flex-start;}
+  @media(max-width:900px){ .prod-grid{gap:20px;} .prod-body{padding:22px 22px 24px;} }
+  @media(max-width:700px){ .prod-grid{grid-template-columns:1fr;} .cat-head{flex-direction:column;align-items:flex-start;gap:8px;} }
+
+  footer.site-footer{padding:56px 0 50px;text-align:center;font-size:.85rem;color:var(--ink-soft);border-top:1px solid var(--line);}
+  .footer-name{font-family:'Fraunces',Georgia,serif;font-size:1.05rem;color:var(--ink);margin-bottom:4px;}
+  .footer-role{font-size:.8rem;color:var(--ink-soft);margin-bottom:24px;}
+  .footer-links{display:flex;justify-content:center;gap:24px;font-size:.82rem;}
+  .footer-links a:hover{color:var(--green-2);}
+  .footer-copy{margin-top:20px;font-size:.78rem;opacity:.7;}
+
+  .back-top{
+    position:fixed;bottom:26px;right:26px;width:44px;height:44px;border-radius:var(--radius);
+    background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:90;
+    border:none;cursor:pointer;font:inherit;padding:0;
+  }
+  .back-top.show{opacity:1;pointer-events:auto;}
+  .back-top:hover{transform:translateY(-4px);background:var(--green-2);}
+
+  @media(max-width:900px){
+    section .wrap{padding:0 24px;}
+    .header-inner{padding:14px 24px;}
+  }
+
+</style>
+</head>
+<body>
+
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="acasaandreea.html#top" class="brand">
+      <svg class="brand-icon" viewBox="0 0 48 48" fill="none">
+        <path d="M24 4 L44 20 V44 H4 V20 Z" fill="#4F883D"/>
+        <circle cx="17" cy="30" r="4.2" fill="#fff"/>
+        <path d="M17 34.5c-4 0-7 2-7 5.5h14c0-3.5-3-5.5-7-5.5Z" fill="#fff"/>
+        <circle cx="30" cy="27" r="5.2" fill="#fff"/>
+        <path d="M30 32.5c-5 0-8.5 2.4-8.5 6.5h17c0-4.1-3.5-6.5-8.5-6.5Z" fill="#fff"/>
+      </svg>
+      <span class="brand-name">Andreea Abe Adebowale</span>
+    </a>
+    <nav class="index-nav" id="navLinks">
+      <a href="acasaandreea.html#top">Acasă</a>
+      <a href="practica-clinica.html">Practică clinică</a>
+      <a href="pentru-specialisti.html">Pentru specialiști</a>
+      <a href="resurse.html">Resurse</a>
+      <a href="magazin.html" class="current">Magazin</a>
+      <a href="despre-mine.html">Despre mine</a>
+      <a href="contact.html" class="contact-box-mobile">Contact</a>
+    </nav>
+    <a href="contact.html" class="contact-box">Contact</a>
+    <button class="navtoggle" id="navToggle" aria-label="Meniu de navigare">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="page-intro">
+  <div class="wrap">
+    <span class="tag-pill reveal in">Magazin</span>
+    <h1 class="reveal in reveal-delay-1">Resurse pregătite pentru fiecare rol din jurul copilului</h1>
+    <p class="lead reveal in reveal-delay-2">Materiale și instrumente organizate după cine le folosește — alege categoria potrivită pentru tine.</p>
+  </div>
+</section>
+
+<div class="catalog-note wrap">
+  <p>Fiecare resursă deschide pagina ei reală, pe magazinul existent — link extern, nu parte din acest mockup.</p>
+</div>
+
+<section class="cat-section" id="psihologi">
+  <div class="wrap">
+    <div class="cat-head">
+      <h2>Psihologi</h2>
+      <span class="cat-count">8 resurse</span>
+    </div>
+    <div class="prod-grid" data-stagger>
+      <a href="https://joclapsiholog.ro/index.php/pachet-carte2-seturi-carduri-pentru-psihologi/" target="_blank" rel="noopener" class="prod-card reveal">
+        <div class="prod-photo"><img src="Pachet-carte2-seturi-carduri-ri5ak19jx2tsavmqprkq39pba02l00glatek2gjikg.jpg" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>Pachet carte + 2 seturi carduri pentru psihologi</h3>
+          <span class="prod-link">Vezi produsul<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a href="https://joclapsiholog.ro/index.php/consiliere-parentala-relationala/" target="_blank" rel="noopener" class="prod-card reveal">
+        <div class="prod-photo"><img src="mock-up-coperti-PARINTI-1-scaled-rmmiu5uzy19x4y3pdc53cf8j8bru21v35q3sg669q8.png" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>Consiliere parentală relațională</h3>
+          <span class="prod-link">Vezi produsul<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a href="https://joclapsiholog.ro/index.php/product/ai-in-psychotherapy-balancing-benefits-and-ethical-dilemmas-clinical-ethical-and-relational-perspectives/" target="_blank" rel="noopener" class="prod-card reveal">
+        <div class="prod-photo"><img src="psychotherapy-balancing-benefits-and-ethical-dilemmas-ri5b3ayg0t7eb3n473fe7enhod3gsmyhy6uw8nyz0g.jpg" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>AI in Psychotherapy — Balancing Benefits and Ethical Dilemmas</h3>
+          <span class="prod-link">Vezi produsul<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a href="https://joclapsiholog.ro/shop/uncategorised/manual-curs-1-evaluarea-experientiala-a-relatiei-parinte-copil/" target="_blank" rel="noopener" class="prod-card reveal">
+        <div class="prod-photo"><img src="1-2-scaled.png" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>Manual curs 1 — Evaluarea experiențială a relației părinte-copil</h3>
+          <span class="prod-link">Vezi produsul<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+    </div>
+    <div class="cat-sub reveal">Cursuri înregistrate</div>
+    <div class="prod-grid" data-stagger>
+      <a href="https://joclapsiholog.ro/index.php/evaluarea-si-terapia-copiilor-si-a-familiei/" target="_blank" rel="noopener" class="prod-card reveal">
+        <div class="prod-photo"><img src="Curs_Inregistrat_2-copy.png" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>Introducere în evaluarea și terapia copiilor și a familiei</h3>
+          <span class="prod-link">Vezi produsul<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a href="https://joclapsiholog.ro/index.php/terapia-doliului-la-copii/" target="_blank" rel="noopener" class="prod-card reveal">
+        <div class="prod-photo"><img src="Curs_Inregistrat_3-copy.png" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>Terapia doliului și a pierderii la copii</h3>
+          <span class="prod-link">Vezi produsul<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a href="https://joclapsiholog.ro/index.php/terapia-divortului-la-copii-si-adolescenti/" target="_blank" rel="noopener" class="prod-card reveal">
+        <div class="prod-photo"><img src="Curs_Inregistrat_4-copy.png" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>Terapia divorțului la copii și adolescenți</h3>
+          <span class="prod-link">Vezi produsul<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a href="https://joclapsiholog.ro/index.php/evaluarea-si-terapia-anxietatii-la-copii-si-adolescenti-2/" target="_blank" rel="noopener" class="prod-card reveal">
+        <div class="prod-photo"><img src="487998954_1101946945298834_4939136950180066564_n-copy.jpg" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>Evaluarea și terapia anxietății la copii și adolescenți</h3>
+          <span class="prod-link">Vezi produsul<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cat-section" id="parinti">
+  <div class="wrap">
+    <div class="cat-head">
+      <h2>Părinți</h2>
+      <span class="cat-count">4 resurse disponibile · 2 în curând</span>
+    </div>
+    <div class="prod-grid" data-stagger>
+      <a href="https://joclapsiholog.ro/index.php/pachet-carte2-seturi-carduri-pentru-parinti-si-copii/" target="_blank" rel="noopener" class="prod-card reveal">
+        <div class="prod-photo"><img src="Jurnalul_de_joaca_pentru_prima_luna_de_viata-1-1536x1023.jpeg" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>Pachet carte + 2 seturi carduri pentru părinți și copii</h3>
+          <span class="prod-link">Vezi produsul<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a href="https://joclapsiholog.ro/index.php/jurnalul-de-joaca-pentru-prima-luna-de-viata/" target="_blank" rel="noopener" class="prod-card reveal">
+        <div class="prod-photo"><img src="Jurnalul_de_joaca_a-doua-luna-de-joaca-1-1536x1023.jpeg" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>E-book Jurnal de Joacă — Prima lună de viață</h3>
+          <span class="prod-link">Vezi produsul<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a href="https://joclapsiholog.ro/index.php/jurnalul-de-joaca-pentru-a-doua-luna-de-viata/" target="_blank" rel="noopener" class="prod-card reveal">
+        <div class="prod-photo"><img src="Jurnalul_de_joaca_pentru-luni-3-4-de-viata-1-1536x1023.jpeg" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>E-book Jurnal de Joacă — A doua lună de viață</h3>
+          <span class="prod-link">Vezi produsul<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a href="https://joclapsiholog.ro/index.php/jurnalul-de-joaca-pentru-lunile-3-4-de-viata/" target="_blank" rel="noopener" class="prod-card reveal">
+        <div class="prod-photo"><img src="Jurnalul_de_joaca_pentru-lunile-5-6-de-viata-1-1536x1023.jpeg" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>E-book Jurnal de Joacă — Lunile 3-4 de viață</h3>
+          <span class="prod-link">Vezi produsul<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <div class="prod-card soon reveal">
+        <div class="prod-photo"><img src="7-8-de-viata.jpg" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>E-book Jurnal de Joacă — Lunile 5-6 de viață</h3>
+          <span class="soon-badge">În curând</span>
+        </div>
+      </div>
+      <div class="prod-card soon reveal">
+        <div class="prod-photo"><img src="10-12-de-viata.jpg" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>E-book Jurnal de Joacă — Lunile 7-9 de viață</h3>
+          <span class="soon-badge">În curând</span>
+        </div>
+      </div>
+      <div class="prod-card soon reveal">
+        <div class="prod-photo"><img src="10-12-de-viata.jpg" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>E-book Jurnal de Joacă — Lunile 10-12 de viață</h3>
+          <span class="soon-badge">În curând</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cat-section" id="cadre-didactice">
+  <div class="wrap">
+    <div class="cat-head">
+      <h2>Cadre didactice</h2>
+      <span class="cat-count">1 resursă disponibilă · 1 în curând</span>
+    </div>
+    <div class="prod-grid" data-stagger>
+      <a href="https://joclapsiholog.ro/index.php/pachet-carte-2-seturi-carduri-pentru-cadre-didactice-si-elevi/" target="_blank" rel="noopener" class="prod-card reveal">
+        <div class="prod-photo"><img src="Pachet-carte2-seturi-carduri-ri5ak19jx2tsavmqprkq39pba02l00glatek2gjikg.jpg" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>Pachet carte + 2 seturi carduri pentru cadre didactice și elevi</h3>
+          <span class="prod-link">Vezi produsul<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <div class="prod-card soon reveal">
+        <div class="prod-photo"><img src="1-1-1536x1024.png" alt=""></div>
+        <div class="prod-body">
+          <span class="prod-kicker" aria-hidden="true"></span>
+          <h3>Tehnici de autoreglare și coreglare acasă</h3>
+          <span class="soon-badge">În curând</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-name">Andreea Abe Adebowale</div>
+  <div class="footer-role">Psiholog clinician</div>
+  <div class="footer-links">
+    <a href="https://joclapsiholog.ro/index.php/termeni-si-conditii/" target="_blank" rel="noopener">Termeni și condiții</a>
+    <a href="https://joclapsiholog.ro/index.php/protectia-datelor-cu-caracter-personal/" target="_blank" rel="noopener">Protecția datelor cu caracter personal (GDPR)</a>
+  </div>
+  <div class="footer-copy">© 2026 Toate drepturile rezervate</div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Înapoi sus" title="Sus">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  const backTop = document.getElementById('backTop');
+  const readingProgress = document.getElementById('readingProgress');
+
+  function onScroll(){
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 10);
+    backTop.classList.toggle('show', y > 500);
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (y / docHeight) * 100 : 0;
+    readingProgress.style.width = Math.min(100, Math.max(0, pct)) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.setAttribute('aria-expanded', 'false');
+  function closeNav() {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', open);
+    document.body.classList.toggle('nav-open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeNav();
+      navToggle.focus();
+    }
+  });
+
+  const revealEls = Array.from(document.querySelectorAll('.reveal'))
+    .filter(el => !el.closest('[data-stagger]'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12});
+  revealEls.forEach(el => io.observe(el));
+
+  const staggerGroups = document.querySelectorAll('[data-stagger]');
+  const groupIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const items = entry.target.querySelectorAll(':scope > .reveal');
+      items.forEach((el, i) => { const d = (i * 0.09).toFixed(2) + 's'; el.style.transitionDelay = d; });
+      requestAnimationFrame(() => { items.forEach(el => el.classList.add('in')); });
+      groupIO.unobserve(entry.target);
+    });
+  }, {threshold:.1});
+  staggerGroups.forEach(el => groupIO.observe(el));
+</script>
+
+</body>
+</html>

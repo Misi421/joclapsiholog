@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentorat pentru specialiști — Andreea Abe Adebowale</title>
+<meta name="description" content="Mentorat în psihoterapie și mentorat în psihologie clinică — o însoțire individuală, pe termen mai lung, pentru specialiștii care lucrează cu copii, adolescenți, părinți și familii.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --ink:#101a0c;
+    --ink-soft:#4c5a43;
+    --green:#4F873E;
+    --forest:color-mix(in srgb, var(--green) 95%, black);
+    --forest-2:color-mix(in srgb, var(--green) 70%, black);
+    --green-2:color-mix(in srgb, var(--green) 80%, black);
+    --green-3:color-mix(in srgb, var(--green) 100%, white);
+    --pale:color-mix(in srgb, var(--green) 7%, white);
+    --cream:#faf9f4;
+    --paper:#ffffff;
+    --line:rgba(16,26,12,.12);
+    --line-light:rgba(255,255,255,.18);
+    --radius:4px;
+    --maxw:1320px;
+    --ease:cubic-bezier(.16,1,.3,1);
+    --shadow-card:0 20px 46px -30px rgba(16,26,12,.25);
+    --shadow-lift:0 26px 60px -30px rgba(16,26,12,.32);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',system-ui,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  body.nav-open{overflow:hidden;}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;font-weight:500;letter-spacing:.1px;color:var(--ink);}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+  ::selection{background:var(--green);color:#fff;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important;}
+  }
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.12s;}
+  .reveal-delay-2{transition-delay:.24s;}
+  .reveal-delay-3{transition-delay:.36s;}
+
+  .text-link{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.94rem;color:var(--green-2);padding-bottom:4px;border-bottom:1.5px solid var(--green-2);transition:gap .3s var(--ease),color .3s,border-color .3s;}
+  .text-link:hover{gap:15px;color:var(--green);border-color:var(--green);}
+  .text-link svg{transition:transform .3s var(--ease);flex:none;}
+  .text-link:hover svg{transform:translateX(3px);}
+
+  .tag-pill{display:inline-block;background:var(--pale);color:var(--forest-2);font-weight:700;font-size:.72rem;letter-spacing:1.6px;text-transform:uppercase;padding:8px 18px;border-radius:999px;}
+
+  .breadcrumb{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--ink-soft);margin-bottom:28px;opacity:.85;flex-wrap:wrap;}
+  .breadcrumb a{color:var(--green-2);}
+  .breadcrumb a:hover{color:var(--green);}
+
+  /* READING PROGRESS */
+  .reading-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--green);z-index:150;}
+
+  /* HEADER */
+  .site-header{position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:0 0 0 0 rgba(16,26,12,0);transition:border-color .5s var(--ease),box-shadow .5s var(--ease);}
+  .site-header::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--cream);transition:background .5s var(--ease),backdrop-filter .5s var(--ease);}
+  .site-header.scrolled{border-bottom-color:rgba(16,26,12,.09);box-shadow:0 10px 30px -22px rgba(16,26,12,.35);}
+  .site-header.scrolled::before{background:rgba(250,249,244,.78);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);}
+  .header-inner{display:flex;align-items:center;gap:32px;max-width:var(--maxw);margin:0 auto;padding:16px 40px;}
+  .brand{display:flex;align-items:center;gap:10px;flex:none;}
+  .brand-icon{width:32px;height:32px;flex:none;}
+  .brand-name{font-family:'Fraunces',Georgia,serif;font-size:1rem;}
+  .index-nav{display:flex;gap:22px;align-items:center;font-size:.86rem;font-weight:600;flex:1;}
+  .index-nav a{position:relative;color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap;}
+  .index-nav a:hover{opacity:1;color:var(--green-2);}
+  .index-nav a.current{opacity:1;color:var(--green-2);}
+  .contact-box{flex:none;border:1.5px solid var(--ink);padding:9px 20px;font-weight:700;font-size:.86rem;border-radius:var(--radius);transition:background .3s,color .3s,border-color .3s;}
+  .contact-box:hover{background:var(--ink);color:#fff;}
+  .navtoggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;margin-left:auto;flex:none;position:relative;z-index:201;}
+  .navtoggle span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s,opacity .3s;}
+  .navtoggle.open span{background:#fff;}
+  .navtoggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .navtoggle.open span:nth-child(2){opacity:0;}
+  .navtoggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .contact-box-mobile{display:none;}
+
+  @media(min-width:901px) and (max-width:1120px){
+    .index-nav{gap:13px;font-size:.79rem;}
+    .contact-box{padding:9px 14px;font-size:.79rem;}
+    .header-inner{gap:16px;}
+  }
+
+  @media(max-width:900px){
+    .index-nav{position:fixed;inset:0;z-index:200;background:var(--pale);flex-direction:column;justify-content:flex-start;align-items:flex-start;padding:90px 34px 40px;gap:2px;transform:translateY(-100%);opacity:0;transition:transform .5s var(--ease),opacity .4s;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    }
+    .index-nav.open{transform:translateY(0);opacity:1;}
+    .index-nav a{font-size: 1.5rem;padding: 13px 0;width: 100%;opacity: 1;font-family: 'Fraunces', Georgia, serif;padding-left: 25px;}
+    .index-nav a.current{opacity: 1;color: var(--pale);background-color: var(--green);border-radius: 20px;
+    }   
+    .contact-box{display:none;}
+    .contact-box-mobile{display:inline-flex;margin-top:26px;color:#fff;padding:11px 24px;font-weight:700;border-radius:var(--radius);font-size:.9rem;}
+    .navtoggle{display:flex;}
+    .navtoggle.open span{background:#000;}
+  }
+
+  section{position:relative;}
+
+  /* INTRO — full split, no boxed-photo trick */
+  .intro-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);align-items:stretch;min-height:82vh;}
+  .intro-text-panel{display:flex;flex-direction:column;justify-content:center;padding:64px clamp(24px,6vw,80px) 64px clamp(24px,6vw,80px);}
+  .intro-text-inner{max-width:560px;}
+  .intro-text-inner h1{font-size:clamp(2.1rem,3.8vw,2.9rem);line-height:1.16;margin:22px 0 26px;}
+  .intro-text-inner h1 em{font-style:italic;color:var(--green-2);}
+  .intro-text-inner .lead{color:var(--ink-soft);font-size:1.06rem;margin-bottom:18px;}
+  .intro-text-inner .lead:last-of-type{margin-bottom:0;}
+  .intro-photo-panel{position:relative;overflow:hidden;min-height:420px;}
+  .intro-photo-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(1.06);}
+  .intro-photo-panel::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,rgba(16,26,12,.14) 0%,rgba(16,26,12,0) 34%);}
+  @media(max-width:900px){
+    .intro-split{grid-template-columns:minmax(0,1fr);min-height:0;}
+    .intro-photo-panel{min-height:340px;order:-1;}
+    .intro-text-panel{padding:48px 24px 56px;min-width:0;}
+    .intro-text-inner{max-width:100%;min-width:0;}
+  }
+
+  /* QUICK NAV */
+  .quicknav{display:flex;gap:8px;flex-wrap:wrap;margin-top:38px;}
+  .quicknav a{font-size:.8rem;font-weight:700;color:var(--forest-2);background:var(--pale);padding:9px 16px;border-radius:999px;transition:color .25s,background .25s;white-space:nowrap;}
+  .quicknav a:hover{color:#fff;background:var(--green);}
+  @media(max-width:640px){
+    .quicknav{overflow-x:auto;max-width:100%;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+    .quicknav::-webkit-scrollbar{display:none;}
+  }
+
+  /* HUB CARDS (for supervizare.html / mentorat.html) */
+  .hub{padding:26px 0 40px;}
+  .hub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:960px;margin:0 auto;}
+  .hub-card{background:var(--paper);border-radius:calc(var(--radius) + 14px);padding:46px 40px;box-shadow:var(--shadow-card);transition:transform .35s var(--ease),box-shadow .35s var(--ease);display:flex;flex-direction:column;align-items:flex-start;}
+  .hub-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);}
+  .hub-num{font-family:'Fraunces',Georgia,serif;font-style:italic;color:var(--green-2);font-size:1.1rem;display:block;margin-bottom:16px;}
+  .hub-card h2{font-size:1.5rem;margin-bottom:14px;line-height:1.25;}
+  .hub-card p{color:var(--ink-soft);font-size:.98rem;margin-bottom:16px;}
+  @media(max-width:760px){ .hub-grid{grid-template-columns:1fr;} }
+
+  /* ARTICLE — single flowing column */
+  .article{padding:100px 0 40px;}
+  .chapters{max-width:700px;margin:0 auto;}
+  .chapter{scroll-margin-top:104px;}
+  .chapter + .chapter{margin-top:96px;}
+  .chapter h2{position:relative;font-size:clamp(1.5rem,2.6vw,1.95rem);margin:22px 0 26px;line-height:1.25;}
+  .chapter h3{font-family:'Fraunces',Georgia,serif;font-weight:500;font-style:italic;font-size:1.12rem;margin:30px 0 14px;color:var(--forest-2);}
+  .chapter p{color:var(--ink-soft);margin-bottom:18px;font-size:1.04rem;}
+  .chapter p:last-child{margin-bottom:0;}
+
+  /* Drop cap — premium editorial touch on the opening paragraph */
+  .dropcap::first-letter{
+    float:left;font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:3.6em;
+    line-height:.78;padding:7px 12px 0 0;color:var(--green-2);
+  }
+  @media(max-width:640px){ .dropcap::first-letter{font-size:2.9em;padding:5px 9px 0 0;} }
+
+  .chapter-divider{display:flex;align-items:center;justify-content:center;gap:16px;margin:96px auto 0;max-width:700px;}
+  .chapter-divider::before,.chapter-divider::after{content:'';flex:1;height:1px;background:var(--line);}
+  .chapter-divider .dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex:none;}
+
+  .pull{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:1.32rem;line-height:1.48;color:var(--forest-2);border-left:3px solid var(--green);padding:2px 0 2px 26px;margin:30px 0;max-width:560px;}
+
+  /* Price note — pale rounded card, not a pill (so it wraps gracefully) */
+  .price-note{display:inline-block;background:var(--pale);color:var(--forest-2);font-weight:700;font-size:.92rem;padding:15px 22px;border-radius:calc(var(--radius) + 8px);margin-top:12px;line-height:1.65;}
+
+  /* Info card — soft callout, replaces old left-border note-box */
+  .info-card{background:var(--pale);border-left:3px solid var(--green);border-radius:0 calc(var(--radius) + 8px) calc(var(--radius) + 8px) 0;padding:20px 26px;margin-top:28px;font-size:.92rem;color:var(--ink-soft);max-width:680px;}
+
+  /* OVERVIEW — soft-shadow comparison cards (2 or 3 up) */
+  .overview-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:22px;}
+  .overview-grid.cols-3{grid-template-columns:repeat(3,1fr);}
+  .overview-card{background:var(--paper);border-radius:calc(var(--radius) + 10px);padding:30px 28px;box-shadow:var(--shadow-card);}
+  .overview-num{font-family:'Fraunces',Georgia,serif;font-style:italic;color:var(--green-2);font-size:1.05rem;display:block;margin-bottom:12px;}
+  .overview-card h3{font-size:1.08rem;margin-bottom:10px;line-height:1.3;font-style:normal;color:var(--ink);}
+  .overview-card p{color:var(--ink-soft);font-size:.92rem;margin:0 0 14px;}
+  @media(max-width:640px){ .overview-grid,.overview-grid.cols-3{grid-template-columns:1fr;} }
+
+  .related-label{text-transform:uppercase;letter-spacing:1.6px;font-size:.74rem;font-weight:700;color:var(--green-2);margin-bottom:18px;display:block;}
+  .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px;}
+  .related-card{background:var(--paper);border-radius:calc(var(--radius) + 10px);padding:26px 24px;box-shadow:var(--shadow-card);transition:transform .35s var(--ease),box-shadow .35s var(--ease);}
+  .related-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lift);}
+  .related-card h3{margin:0 0 8px !important;font-size:1.02rem;font-style:normal;color:var(--ink);}
+  .related-card p{font-size:.9rem;margin-bottom:16px !important;color:var(--ink-soft);}
+  @media(max-width:760px){ .related-grid{grid-template-columns:1fr;} }
+
+  /* CTA */
+  .cta-block{padding:110px 0;text-align:center;background:var(--green);margin-top:120px;}
+  .cta-block h2{font-size:clamp(1.7rem,3.2vw,2.3rem);margin-bottom:18px; color: var(--pale);}
+  .cta-block p{color:var(--pale);max-width:480px;margin:0 auto 34px;font-size:1.04rem;}
+  .cta-row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:center;}
+  .cta-pill{display:inline-flex;align-items:center;gap:10px;border: 2px solid;color:#fff;padding:15px 28px;border-radius:999px;font-weight:700;font-size:.94rem;transition:background .3s,gap .3s var(--ease);}
+  .cta-pill:hover{background:var(--green-2);gap:16px;}
+  .text-link-1{display: inline-flex;align-items: center;gap: 9px;font-weight: 700;font-size: .94rem;color: var(--pale);padding-bottom: 4px;border-bottom: 1.5px solid var(--cream);transition: gap .3s var(--ease), color .3s, border-color .3s;
+  }
+
+  footer.site-footer{padding:56px 0 50px;text-align:center;font-size:.85rem;color:var(--ink-soft);border-top:1px solid var(--line);}
+  .footer-name{font-family:'Fraunces',Georgia,serif;font-size:1.05rem;color:var(--ink);margin-bottom:4px;}
+  .footer-role{font-size:.8rem;color:var(--ink-soft);margin-bottom:24px;}
+  .footer-links{display:flex;justify-content:center;gap:24px;font-size:.82rem;}
+  .footer-links a:hover{color:var(--green-2);}
+  .footer-copy{margin-top:20px;font-size:.78rem;opacity:.7;}
+
+  .back-top{
+    position:fixed;bottom:26px;right:26px;width:44px;height:44px;border-radius:var(--radius);
+    background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:90;
+    border:none;cursor:pointer;font:inherit;padding:0;
+  }
+  .back-top.show{opacity:1;pointer-events:auto;}
+  .back-top:hover{transform:translateY(-4px);background:var(--green-2);}
+
+  @media(max-width:900px){
+    section .wrap{padding:0 24px;}
+    .header-inner{padding:14px 24px;}
+    .article{padding:0px 0 20px;}
+    .hub{padding:10px 0 20px;}
+  }
+  @media(max-width:640px){
+    .chapter + .chapter{margin-top:72px;}
+    .chapter-divider{margin:72px auto 0;}
+    .cta-block{padding:76px 0;margin-top:80px;}
+  }
+
+.logo{
+    width: 235px;
+  }
+  @media(max-width:640px){
+    .logo{
+    width: 220px;
+    position: absolute;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <img class="logo" src="logo.png" alt="">
+    <nav class="index-nav" id="navLinks">
+      <a href="acasaandreea.html#top">Acasă</a>
+      <a href="practica-clinica.html">Practică clinică</a>
+      <a href="pentru-specialisti.html" class="current">Pentru specialiști</a>
+      <a href="resurse.html">Resurse</a>
+      <a href="magazin.html">Magazin</a>
+      <a href="despre-mine.html">Despre mine</a>
+      <a href="contact.html" class="contact-box-mobile">Contact</a>
+    </nav>
+    <a href="contact.html" class="contact-box">Contact</a>
+    <button class="navtoggle" id="navToggle" aria-label="Meniu de navigare">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="intro-split">
+  <div class="intro-text-panel">
+    <div class="intro-text-inner">
+      <div class="breadcrumb reveal in"><a href="pentru-specialisti.html">Pentru specialiști</a> / Mentorat</div>
+      <span class="tag-pill reveal in">Mentorat</span>
+      <h1 class="reveal in reveal-delay-1">Mentorat pentru <em>specialiști</em></h1>
+      <p class="lead reveal in reveal-delay-2">Mentoratul e o însoțire mai personală și pe termen mai lung decât supervizarea — nu ne oprim doar la un caz, ci privim traseul tău profesional în ansamblu.</p>
+      <p class="lead reveal in reveal-delay-2">Ofer mentorat pe două direcții, în funcție de formarea ta: psihoterapie sau psihologie clinică.</p>
+      <nav class="quicknav reveal in reveal-delay-3">
+        <a href="#psihoterapie">Mentorat în psihoterapie</a>
+        <a href="#psihologie-clinica">Mentorat în psihologie clinică</a>
+      </nav>
+    </div>
+  </div>
+  <div class="intro-photo-panel reveal in">
+    <img src="https://joclapsiholog.ro/wp-content/uploads/2025/07/Andreea-Abe-Adebowale-foto-Cristina-Nichitus-15-scaled.jpg" alt="Andreea Abe Adebowale">
+  </div>
+</section>
+
+<section class="hub">
+  <div class="wrap">
+    <div class="hub-grid reveal">
+      <a href="pentru-specialisti-mentorat-psihoterapie.html" class="hub-card" id="psihoterapie">
+        <span class="hub-num">01</span>
+        <h2>Mentorat în psihoterapie</h2>
+        <p>Pentru psihoterapeuții care vor să-și construiască sau să-și consolideze practica de la un capăt la altul — de la primul client până la un cabinet stabil.</p>
+        <p class="price-note">Individual — 300 lei / 50 min</p>
+        <span class="text-link">Vezi pagina <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="pentru-specialisti-mentorat-psihologie-clinica.html" class="hub-card" id="psihologie-clinica">
+        <span class="hub-num">02</span>
+        <h2>Mentorat în psihologie clinică</h2>
+        <p>Pentru psihologii clinicieni care vor îndrumare individuală, constantă, pe parcursul formării sau al primilor ani de practică independentă.</p>
+        <p class="price-note">Individual — 300 lei / 50 min</p>
+        <span class="text-link">Vezi pagina <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="article">
+  <div class="wrap">
+    <div class="chapters">
+<div class="chapter reveal" id="integrare">
+  <h2>Alte direcții de dezvoltare profesională</h2>
+  <p>Dacă preferi un cadru de reflecție punctuală pe cazuri, sau un program structurat de formare, mai degrabă decât o însoțire individuală continuă:</p>
+  <span class="related-label">Pagini conexe</span>
+  <div class="related-grid">
+          <a href="pentru-specialisti-supervizare.html" class="related-card">
+            <h3>Supervizare</h3>
+            <p>Reflecție asupra cazurilor și a propriei practici.</p>
+            <span class="text-link" style="font-size:.86rem;">Vezi pagina <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a href="pentru-specialisti-formare.html" class="related-card">
+            <h3>Formare</h3>
+            <p>Programe de formare, prin APRICAS.</p>
+            <span class="text-link" style="font-size:.86rem;">Vezi pagina <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a href="pentru-specialisti.html#apricas" class="related-card">
+            <h3>APRICAS</h3>
+            <p>Asociația prin care se desfășoară formarea.</p>
+            <span class="text-link" style="font-size:.86rem;">Vezi pagina <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="cta-block">
+  <div class="wrap">
+    <h2 class="reveal">Hai să vorbim</h2>
+    <p class="reveal reveal-delay-1">Dacă vrei să discutăm despre mentorat, scrie-mi câteva cuvinte despre unde ești în parcursul tău profesional.</p>
+    <div class="cta-row reveal reveal-delay-2">
+      <a href="contact.html" class="cta-pill">
+        Contactează-mă
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="pentru-specialisti.html" class="text-link-1">
+        Vezi toate direcțiile pentru specialiști
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-name">Andreea Abe Adebowale</div>
+  <div class="footer-role">Psiholog clinician</div>
+  <div class="footer-links">
+    <a href="https://joclapsiholog.ro/index.php/termeni-si-conditii/" target="_blank" rel="noopener">Termeni și condiții</a>
+    <a href="https://joclapsiholog.ro/index.php/protectia-datelor-cu-caracter-personal/" target="_blank" rel="noopener">Protecția datelor cu caracter personal (GDPR)</a>
+  </div>
+  <div class="footer-copy">© 2026 Toate drepturile rezervate</div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Înapoi sus" title="Sus">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  const backTop = document.getElementById('backTop');
+  const readingProgress = document.getElementById('readingProgress');
+
+  function onScroll(){
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 10);
+    backTop.classList.toggle('show', y > 500);
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (y / docHeight) * 100 : 0;
+    readingProgress.style.width = Math.min(100, Math.max(0, pct)) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.setAttribute('aria-expanded', 'false');
+  function closeNav() {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', open);
+    document.body.classList.toggle('nav-open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeNav();
+      navToggle.focus();
+    }
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
