@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Andreea Abe Adebowale</title>
+<meta name="description" content="Contactează-mă pentru servicii de psihoterapie, evaluare psihologică, consiliere parentală sau pentru supervizare, mentorat și colaborări profesionale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101a0c;
+    --ink-soft:#4c5a43;
+    --green:#4F873E;
+    --forest:color-mix(in srgb, var(--green) 95%, black);
+    --forest-2:color-mix(in srgb, var(--green) 70%, black);
+    --green-2:color-mix(in srgb, var(--green) 80%, black);
+    --green-3:color-mix(in srgb, var(--green) 100%, white);
+    --pale:color-mix(in srgb, var(--green) 7%, white);
+    --cream:#faf9f4;
+    --paper:#ffffff;
+    --line:rgba(16,26,12,.15);
+    --line-light:rgba(255,255,255,.18);
+    --radius:4px;
+    --maxw:1320px;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',system-ui,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  body.nav-open{overflow:hidden;}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;font-weight:500;letter-spacing:.1px;color:var(--ink);}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+  ::selection{background:var(--green);color:#fff;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important;}
+  }
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.12s;}
+  .reveal-delay-2{transition-delay:.24s;}
+
+  .text-link{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.94rem;color:var(--green-2);padding-bottom:4px;border-bottom:1.5px solid var(--green-2);transition:gap .3s var(--ease),color .3s,border-color .3s;}
+  .text-link:hover{gap:15px;color:var(--green);border-color:var(--green);}
+  .text-link svg{transition:transform .3s var(--ease);flex:none;}
+  .text-link:hover svg{transform:translateX(3px);}
+
+  .eyebrow{position:relative;display:inline-block;text-transform:uppercase;letter-spacing:3px;font-size:.72rem;font-weight:700;color:var(--green-2);padding-bottom:16px;margin-bottom:6px;}
+  .eyebrow::after{content:'';position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--green);transition:width .9s var(--ease) .15s;}
+  .eyebrow.in::after{width:52px;}
+
+  .breadcrumb{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--ink-soft);margin-bottom:22px;flex-wrap:wrap;}
+  .breadcrumb a{color:var(--green-2);}
+  .breadcrumb a:hover{color:var(--green);}
+
+  /* READING PROGRESS */
+  .reading-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--green);z-index:150;}
+
+  /* HEADER */
+  .site-header{position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:0 0 0 0 rgba(16,26,12,0);transition:border-color .5s var(--ease),box-shadow .5s var(--ease);}
+  .site-header::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--cream);transition:background .5s var(--ease),backdrop-filter .5s var(--ease);}
+  .site-header.scrolled{border-bottom-color:rgba(16,26,12,.09);box-shadow:0 10px 30px -22px rgba(16,26,12,.35);}
+  .site-header.scrolled::before{background:rgba(250,249,244,.78);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);}
+  .header-inner{display:flex;align-items:center;gap:32px;max-width:var(--maxw);margin:0 auto;padding:16px 40px;}
+  .brand{display:flex;align-items:center;gap:10px;flex:none;}
+  .brand-icon{width:32px;height:32px;flex:none;}
+  .brand-name{font-family:'Fraunces',Georgia,serif;font-size:1rem;}
+  .index-nav{display:flex;gap:22px;align-items:center;font-size:.86rem;font-weight:600;flex:1;}
+  .index-nav a{position:relative;color:var(--ink);opacity:.82;transition:opacity .2s,color .2s;white-space:nowrap;}
+  .index-nav a:hover{opacity:1;color:var(--green-2);}
+  .index-nav a.current{opacity:1;color:var(--green-2);}
+  .contact-box{flex:none;border:1.5px solid var(--ink);padding:9px 20px;font-weight:700;font-size:.86rem;border-radius:var(--radius);transition:background .3s,color .3s,border-color .3s;}
+  .contact-box:hover{background:var(--ink);color:#fff;}
+  .navtoggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;margin-left:auto;flex:none;position:relative;z-index:201;}
+  .navtoggle span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s,opacity .3s;}
+  .navtoggle.open span{background:#fff;}
+  .navtoggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .navtoggle.open span:nth-child(2){opacity:0;}
+  .navtoggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .contact-box-mobile{display:none;}
+
+  @media(max-width:900px){
+    .index-nav{
+      position:fixed;inset:0;z-index:200;background:var(--forest);
+      flex-direction:column;justify-content:flex-start;align-items:flex-start;
+      padding:90px 34px 40px;gap:2px;transform:translateY(-100%);opacity:0;
+      transition:transform .5s var(--ease),opacity .4s;
+      overflow-y:auto;-webkit-overflow-scrolling:touch;
+    }
+    .index-nav.open{transform:translateY(0);opacity:1;}
+    .index-nav a{font-size:1.5rem;padding:13px 0;color:#eef3e7;border-bottom:1px solid rgba(255,255,255,.12);width:100%;opacity:1;font-family:'Fraunces',Georgia,serif;}
+    .contact-box{display:none;}
+    .contact-box-mobile{display:inline-flex;margin-top:26px;border:1.5px solid #fff;color:#fff;padding:11px 24px;font-weight:700;border-radius:var(--radius);font-size:.9rem;}
+    .navtoggle{display:flex;}
+  }
+
+  section{position:relative;}
+
+  /* PAGE INTRO */
+  .page-intro{padding:56px 0 70px;}
+  .page-intro .intro-inner{max-width:720px;}
+  .page-intro h1{font-size:clamp(2rem,4.2vw,3rem);margin-bottom:22px;}
+  .page-intro .lead{color:var(--ink-soft);font-size:1.08rem;margin-bottom:0;}
+
+  /* PATH CARDS */
+  .path-section{padding:0 0 70px;}
+  .path-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+  .path-card{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--green);border-radius:calc(var(--radius) + 6px);padding:34px 32px;transition:transform .35s var(--ease),box-shadow .35s var(--ease);}
+  .path-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(16,26,12,.28);}
+  .path-ic{width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+  .path-ic svg{width:20px;height:20px;}
+  .path-card h2{font-size:1.3rem;margin-bottom:12px;}
+  .path-card p{color:var(--ink-soft);margin-bottom:20px;font-size:.98rem;}
+  .path-links{display:flex;flex-wrap:wrap;gap:10px 22px;}
+  @media(max-width:760px){ .path-grid{grid-template-columns:1fr;} }
+
+  /* CONTACT SECTION */
+  .contact-section{padding:70px 0 90px;background:var(--pale);}
+  .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start;}
+  .contact-info h2{font-size:clamp(1.5rem,2.6vw,1.9rem);margin-bottom:20px;}
+  .contact-info p{color:var(--ink-soft);margin-bottom:26px;max-width:400px;}
+  .info-line{display:flex;align-items:center;gap:12px;font-weight:700;font-size:.98rem;margin-bottom:14px;}
+  .info-line .ic{width:32px;height:32px;border-radius:50%;background:var(--paper);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex:none;color:var(--green-2);}
+  .social-line{display:flex;flex-wrap:wrap;gap:8px 6px;margin-top:24px;font-size:.86rem;font-weight:700;}
+  .social-line a{color:var(--green-2);}
+  .social-line a:hover{color:var(--green);}
+  .social-line span{color:var(--line);}
+
+  .contact-form{background:var(--paper);border:1px solid var(--line);border-radius:calc(var(--radius) + 10px);padding:40px;}
+  .contact-form .field{margin-bottom:24px;}
+  .contact-form label{display:block;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--green-2);margin-bottom:8px;}
+  .contact-form input[type=text],
+  .contact-form input[type=email],
+  .contact-form select,
+  .contact-form textarea{
+    width:100%;background:transparent;border:none;border-bottom:1.5px solid var(--line);
+    padding:10px 2px;color:var(--ink);font-family:'Manrope',sans-serif;font-size:1rem;
+    appearance:none;-webkit-appearance:none;border-radius:0;
+  }
+  .contact-form select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%234F873E' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 2px center;padding-right:22px;cursor:pointer;
+  }
+  .contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--ink-soft);opacity:.7;}
+  .contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:none;border-color:var(--green);}
+  .contact-form textarea{min-height:110px;resize:vertical;}
+  .radio-row{display:flex;flex-wrap:wrap;gap:22px;}
+  .radio-opt{display:flex;align-items:center;gap:8px;font-size:.96rem;cursor:pointer;}
+  .radio-opt input{accent-color:var(--green);width:16px;height:16px;flex:none;}
+  .contact-form button{
+    background:var(--ink);color:#fff;border:none;padding:14px 30px;font-weight:700;font-size:.94rem;
+    border-radius:var(--radius);cursor:pointer;display:inline-flex;align-items:center;gap:10px;
+    transition:background .3s,gap .3s var(--ease);
+  }
+  .contact-form button:hover{background:var(--green-2);gap:16px;}
+  .form-note{font-size:.82rem;color:var(--ink-soft);margin-top:16px;}
+
+  /* pregătit pentru Contact Form 7: dacă shortcode-ul [contact-form-7 ...]
+     ia locul formularului static de mai jos (păstrat în interiorul unui
+     <div class="contact-form">), stilurile de aici fac formularul generat
+     de plugin să arate identic cu machetа */
+  .contact-form form{margin:0;}
+  .contact-form input[type=submit]{
+    background:var(--ink);color:#fff;border:none;padding:14px 30px;font-weight:700;font-size:.94rem;
+    border-radius:var(--radius);cursor:pointer;font-family:'Manrope',sans-serif;
+    transition:background .3s;
+  }
+  .contact-form input[type=submit]:hover{background:var(--green-2);}
+  .contact-form .wpcf7-radio{display:flex;flex-wrap:wrap;gap:22px;}
+  .contact-form .wpcf7-list-item{margin:0;}
+  .contact-form .wpcf7-list-item label{display:flex;align-items:center;gap:8px;font-size:.96rem;cursor:pointer;font-weight:400;text-transform:none;letter-spacing:normal;color:var(--ink);}
+  .contact-form .wpcf7-list-item input[type=radio]{accent-color:var(--green);width:16px;height:16px;flex:none;}
+  .contact-form .wpcf7-not-valid-tip{display:block;color:#b3392c;font-size:.78rem;font-weight:600;margin-top:6px;}
+  .contact-form .wpcf7-response-output{
+    margin:20px 0 0;padding:14px 18px;border-radius:var(--radius);font-size:.9rem;font-weight:600;
+    border:1.5px solid var(--line);
+  }
+  .contact-form form.sent .wpcf7-response-output{border-color:var(--green);color:var(--green-2);background:var(--pale);}
+  .contact-form form.invalid .wpcf7-response-output,
+  .contact-form form.unaccepted .wpcf7-response-output,
+  .contact-form form.payment-required .wpcf7-response-output{border-color:#b3392c;color:#b3392c;background:rgba(179,57,44,.06);}
+  .contact-form .wpcf7-spinner{margin:0 0 0 10px;}
+
+  .map-box{margin-top:60px;border:1px solid var(--line);border-radius:calc(var(--radius) + 10px);overflow:hidden;background:var(--paper);}
+  .map-box iframe{width:100%;height:380px;border:0;display:block;filter:grayscale(.35) contrast(1.05);transition:filter .4s var(--ease);}
+  .map-box:hover iframe{filter:grayscale(0) contrast(1);}
+
+  @media(max-width:900px){
+    .contact-grid{grid-template-columns:1fr;gap:44px;}
+    .contact-form{padding:28px 24px;}
+  }
+  @media(max-width:640px){
+    .map-box{margin-top:44px;}
+    .map-box iframe{height:280px;}
+  }
+
+  footer.site-footer{padding:56px 0 50px;text-align:center;font-size:.85rem;color:var(--ink-soft);border-top:1px solid var(--line);}
+  .footer-name{font-family:'Fraunces',Georgia,serif;font-size:1.05rem;color:var(--ink);margin-bottom:4px;}
+  .footer-role{font-size:.8rem;color:var(--ink-soft);margin-bottom:24px;}
+  .footer-links{display:flex;justify-content:center;gap:24px;font-size:.82rem;}
+  .footer-links a:hover{color:var(--green-2);}
+  .footer-copy{margin-top:20px;font-size:.78rem;opacity:.7;}
+
+  .back-top{
+    position:fixed;bottom:26px;right:26px;width:44px;height:44px;border-radius:var(--radius);
+    background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:90;
+    border:none;cursor:pointer;font:inherit;padding:0;
+  }
+  .back-top.show{opacity:1;pointer-events:auto;}
+  .back-top:hover{transform:translateY(-4px);background:var(--green-2);}
+
+  @media(max-width:900px){
+    section .wrap{padding:0 24px;}
+    .header-inner{padding:14px 24px;}
+  }
+  @media(max-width:640px){
+    .page-intro{padding:40px 0 50px;}
+    .path-section{padding:0 0 50px;}
+    .contact-section{padding:50px 0 64px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="acasaandreea.html#top" class="brand">
+      <svg class="brand-icon" viewBox="0 0 48 48" fill="none">
+        <path d="M24 4 L44 20 V44 H4 V20 Z" fill="#4F883D"/>
+        <circle cx="17" cy="30" r="4.2" fill="#fff"/>
+        <path d="M17 34.5c-4 0-7 2-7 5.5h14c0-3.5-3-5.5-7-5.5Z" fill="#fff"/>
+        <circle cx="30" cy="27" r="5.2" fill="#fff"/>
+        <path d="M30 32.5c-5 0-8.5 2.4-8.5 6.5h17c0-4.1-3.5-6.5-8.5-6.5Z" fill="#fff"/>
+      </svg>
+      <span class="brand-name">Andreea Abe Adebowale</span>
+    </a>
+    <nav class="index-nav" id="navLinks">
+      <a href="index.html">Acasă</a>
+      <a href="practica-clinica.html">Practică clinică</a>
+      <a href="pentru-specialisti.html">Pentru specialiști</a>
+      <a href="https://joclapsiholog.ro/Resurse%20V2/">Resurse</a>
+      <a href="magazin.html">Magazin</a>
+      <a href="despre-mine.html">Despre mine</a>
+    </nav>
+    <a href="contact.html" class="contact-box">Contact</a>
+    <button class="navtoggle" id="navToggle" aria-label="Meniu de navigare">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="page-intro">
+  <div class="wrap">
+    <div class="breadcrumb reveal in"><a href="acasaandreea.html#top">Acasă</a> / Contact</div>
+    <div class="intro-inner">
+      <div class="eyebrow in">Contact</div>
+      <h1 class="reveal in">Hai să vorbim</h1>
+      <p class="lead reveal in reveal-delay-1">Alege mai jos ce te descrie mai bine, sau completează direct formularul — îți răspund cât mai curând posibil.</p>
+    </div>
+  </div>
+</section>
+
+<section class="path-section">
+  <div class="wrap">
+    <div class="path-grid">
+      <div class="path-card reveal">
+        <div class="path-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </div>
+        <h2>Sunt părinte / caut servicii clinice</h2>
+        <p>Cauți psihoterapie pentru copilul sau adolescentul tău, consiliere parentală, evaluare psihologică sau sprijin pentru familie.</p>
+        <div class="path-links">
+          <a href="practica-clinica.html" class="text-link">
+            Vezi practica clinică
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#formular" class="text-link">
+            Completează formularul
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="path-card reveal reveal-delay-1">
+        <div class="path-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.2 13.6 7 22 12 19.3 17 22 15.8 13.6"/></svg>
+        </div>
+        <h2>Sunt specialist</h2>
+        <p>Ești psiholog sau psihoterapeut și cauți supervizare, mentorat, formare sau o colaborare profesională.</p>
+        <div class="path-links">
+          <a href="pentru-specialisti.html" class="text-link">
+            Vezi programele pentru specialiști
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#formular" class="text-link">
+            Completează formularul
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="formular">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h2>Datele de contact</h2>
+        <p>Începând cu luna septembrie 2025 lucrez part-time, cu familii și copii din categoria de vârstă 0-6 ani. Pentru supervizare, mentorat sau colaborări, program flexibil.</p>
+        <div class="info-line">
+          <span class="ic" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg></span>
+          Strada Cercului, nr. 2, Sector 2, București
+        </div>
+        <div class="info-line">
+          <span class="ic" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span>
+          contact@joclapsiholog.ro
+        </div>
+        <div class="info-line">
+          <span class="ic" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          Program: joi-vineri, orele 12.00-18.00
+        </div>
+        <div class="social-line">
+          <a href="https://www.facebook.com/andreea.neagu19/" target="_blank" rel="noopener">Facebook</a><span>/</span>
+          <a href="https://www.instagram.com/andreeaabe_neagu_psi/?hl=en" target="_blank" rel="noopener">Instagram</a><span>/</span>
+          <a href="https://youtu.be/cxTR6PSwGNo?si=Zj68n5t8zKwNSWxe" target="_blank" rel="noopener">Youtube</a><span>/</span>
+          <a href="https://www.tiktok.com/@andreeaabeneagu.psi" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
+
+      <form class="contact-form reveal reveal-delay-1" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Mesaj trimis ✓';">
+        <div class="field">
+          <label>Sunt</label>
+          <div class="radio-row">
+            <label class="radio-opt"><input type="radio" name="tip" value="parinte" checked> Părinte / caut servicii clinice</label>
+            <label class="radio-opt"><input type="radio" name="tip" value="specialist"> Specialist</label>
+            <label class="radio-opt"><input type="radio" name="tip" value="altul"> Altcineva</label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="nume">Numele tău</label>
+          <input type="text" id="nume" name="nume" placeholder="Nume și prenume" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="adresa@email.ro" required>
+        </div>
+        <div class="field">
+          <label for="motiv">Motivul pentru care mă contactezi</label>
+          <select id="motiv" name="motiv">
+            <option value="evaluare-psihologica">Evaluare psihologică</option>
+            <option value="psihoterapie-copil-adolescent">Psihoterapie copil/adolescent</option>
+            <option value="consiliere-parentala">Consiliere parentală</option>
+            <option value="terapie-parentala">Terapie parentală</option>
+            <option value="relatia-parinte-copil">Relația părinte–copil</option>
+            <option value="familie">Familie</option>
+            <option value="supervizare-psihoterapie">Supervizare în psihoterapie</option>
+            <option value="supervizare-psihologie-clinica">Supervizare în psihologie clinică</option>
+            <option value="mentorat">Mentorat</option>
+            <option value="colaborare">Colaborare</option>
+            <option value="presa-conferinte">Presă / conferințe</option>
+            <option value="altul">Altul</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mesaj">Mesajul tău</label>
+          <textarea id="mesaj" name="mesaj" placeholder="Spune-mi puțin despre ce ai nevoie..."></textarea>
+        </div>
+        <button type="submit">Trimite mesajul
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="form-note">Îți răspund de obicei în 1-2 zile lucrătoare.</p>
+      </form>
+    </div>
+
+    <div class="map-box reveal">
+      <iframe src="https://www.google.com/maps?q=Strada+Cercului+2,+Sector+2,+Bucure%C8%99ti&output=embed" width="100%" height="380" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="Locație cabinet – Strada Cercului, nr. 2, Sector 2, București"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-name">Andreea Abe Adebowale</div>
+  <div class="footer-role">Psiholog clinician</div>
+  <div class="footer-links">
+    <a href="https://joclapsiholog.ro/index.php/termeni-si-conditii/" target="_blank" rel="noopener">Termeni și condiții</a>
+    <a href="https://joclapsiholog.ro/index.php/protectia-datelor-cu-caracter-personal/" target="_blank" rel="noopener">Protecția datelor cu caracter personal (GDPR)</a>
+  </div>
+  <div class="footer-copy">© 2026 Toate drepturile rezervate</div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Înapoi sus" title="Sus">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  const backTop = document.getElementById('backTop');
+
+  const readingProgress = document.getElementById('readingProgress');
+
+  function onScroll(){
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 10);
+    backTop.classList.toggle('show', y > 500);
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (y / docHeight) * 100 : 0;
+    readingProgress.style.width = Math.min(100, Math.max(0, pct)) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.setAttribute('aria-expanded', 'false');
+  function closeNav() {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', open);
+    document.body.classList.toggle('nav-open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeNav();
+      navToggle.focus();
+    }
+  });
+
+  const revealEls = document.querySelectorAll('.reveal, .eyebrow');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.15});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
